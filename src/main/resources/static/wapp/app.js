@@ -1,4 +1,4 @@
-var app = angular.module('myApp',['ngRoute'])
+var app = angular.module('app',['ngRoute'])
     .run(['$rootScope','$location','$window','$http', function($rootScope,$location,$window,$http){
         $rootScope.presentDate = new Date();
         $rootScope.mainTitle = "";

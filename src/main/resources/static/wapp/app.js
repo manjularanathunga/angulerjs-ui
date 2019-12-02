@@ -1,4 +1,4 @@
-var app = angular.module('app',['ngRoute'])
+var app = angular.module('app',['ngRoute', 'ngCookies'])
     .run(['$rootScope','$location','$window','$http', function($rootScope,$location,$window,$http){
         $rootScope.presentDate = new Date();
         $rootScope.mainTitle = "";
@@ -21,6 +21,14 @@ var app = angular.module('app',['ngRoute'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
             .when("/", {
+                templateUrl : 'wapp/view/loginPage.html',
+                controller: 'LoginController'
+            })
+            .when("/useradmin", {
+                templateUrl : 'wapp/view/userAdminPage.html',
+                controller: 'UserAdminController'
+            })
+            .when("/patient", {
                 templateUrl : 'wapp/view/patientPage.html',
                 controller: 'PatientController'
             })

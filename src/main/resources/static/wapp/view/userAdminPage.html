@@ -1,0 +1,121 @@
+<div class="container-fluid">
+    <h3>User Admin {{actionType.toUpperCase()}}</h3>
+    <hr/>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <span ng-show="useris_show">
+                        <label class="col-sm-1 fleft" for="userid">User Id</label>
+                        <select class="form-control col-sm-3 fleft" id="userid" ng-module="userid">
+                            <option>Admin</option>
+                            <option>saman</option>
+                            <option>suranga</option>
+                            <option>nilantha</option>
+                        </select>
+                    </span>
+                    <div class="d-flex flex-row-reverse">
+                        <button class="btn btn-danger" ng-click="reset();" ng-show="btnResetShow" type="button"><i
+                                aria-hidden="true" class="fa fa fa-reply"></i></button>&nbsp;
+                        <button class="btn btn-info" ng-click="reset_password();" ng-show="btnPwRstShow" type="button">
+                            <i aria-hidden="true" class="fa fa-unlock"></i></button>&nbsp;
+                        <button class="btn btn-danger" ng-click="delete();" ng-show="btnDelShow" type="button"><i
+                                aria-hidden="true" class="fa fa-trash"></i></button>&nbsp;
+                        <button class="btn btn-warning" ng-click="edit();" ng-show="btnEditShow" type="button"><i
+                                aria-hidden="true" class="fa fa-wrench"></i></button>&nbsp;
+                        <button class="btn btn-primary" ng-click="add();" ng-show="btnAddShow" type="button"><i
+                                aria-hidden="true" class="fa fa-plus-circle"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <span class="border">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="col-sm-4 fleft" for="sel1">User Id</label>
+                            <input ng-module="sysuser.userId" class="form-control col-sm-8 fleft" ng-disabled="component_is_disabled" type="text">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="col-sm-4 fleft" for="sel1">userRoles</label>
+                            <input class="form-control col-sm-8 fleft" ng-disabled="component_is_disabled" type="text">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="col-sm-4 fleft" for="sel1">fistName</label>
+                            <input ng-module="sysuser.fistName" class="form-control col-sm-8 fleft" ng-disabled="component_is_disabled" type="text">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="col-sm-4 fleft" for="sel1">Email</label>
+                            <input class="form-control col-sm-8 fleft" ng-disabled="component_is_disabled" type="text">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="col-sm-4 fleft" for="sel1">Middle Name</label>
+                            <input ng-module="sysuser.middleName" class="form-control col-sm-8 fleft" ng-disabled="component_is_disabled" type="text">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="col-sm-4 fleft" for="sel1">userPFNumber</label>
+                            <input class="form-control col-sm-8 fleft" ng-disabled="component_is_disabled" type="text">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="col-sm-4 fleft" for="sel1">Last Name</label>
+                            <input ng-module="sysuser.lastName" class="form-control col-sm-8 fleft" ng-disabled="component_is_disabled" type="text">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="col-sm-4 fleft" for="sel1">Telephone</label>
+                            <input class="form-control col-sm-8 fleft" ng-disabled="component_is_disabled" type="text">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <br>
+            <div class="row">
+                <div class="col-sm-4">
+                </div>
+                <div class="col-sm-4">
+                </div>
+                <div class="col-sm-4 d-flex flex-row-reverse">
+                    <button class="btn btn-success" ng-click="save_submit();" ng-disabled="save_is_disabled" type="button">Save</button>
+                </div>
+            </div>
+        </span>
+        <div class="embed-responsive embed-responsive-21by9">
+            <iframe class="embed-responsive-item" src=""></iframe>
+        </div>
+    </div>
+</div>

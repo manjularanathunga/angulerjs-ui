@@ -6,6 +6,7 @@ public class HttpResponse {
     private boolean success;
     private String exception;
     private int recCount;
+    private Object data;
 
     public String getResponce() {
         return responce;
@@ -37,5 +38,13 @@ public class HttpResponse {
 
     public void setRecCount(int recCount) {
         this.recCount = recCount;
+    }
+
+    public Object getData() {
+        return data;
+    }
+
+    public void setData(Object data) {
+        this.data = data;
     }
 }

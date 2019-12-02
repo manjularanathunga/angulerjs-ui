@@ -34,6 +34,24 @@ public class LoggingController {
         return services.getOne(id);
     }
 
+    @RequestMapping(value = "/{username}", method = RequestMethod.GET)
+    @ResponseBody
+    public HttpResponse findByUserId(@PathVariable(value = "username", required = true) String username) {
+        logger.info("Request UserAdmin username : {} " + username );
+        HttpResponse res = new HttpResponse();
+        List result = services.findByUserId(username);
+        if(result.size() > 0){
+            res.setData(result);
+            res.setSuccess(true);
+            res.setRecCount(result.size());
+        }else{
+            res.setSuccess(false);
+            res.setException("Invalid User !");
+        }
+
+        return res;
+    }
+
     @RequestMapping(value = "/save", method = RequestMethod.POST, headers = "Accept=application/json")
     public UserAdmin save(@RequestBody UserAdmin obj){
         logger.info("UserAdmin Name : {} " + obj.getUserId());

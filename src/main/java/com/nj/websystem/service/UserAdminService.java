@@ -14,4 +14,6 @@ public interface UserAdminService extends JpaRepository<UserAdmin, Long> {
     //@Query("From UserAdmin ORDER BY lastDateModified DESC")
     //List<UserAdmin> findAll();
 
+    List<UserAdmin> findByUserId(String userId);
+
 }

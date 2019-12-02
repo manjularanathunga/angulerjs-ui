@@ -21,14 +21,6 @@ var app = angular.module('myApp',['ngRoute'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
             .when("/", {
-                templateUrl : 'wapp/view/loginPage.html',
-                controller: 'LoginPageController'
-            })
-            .when("/useradmin", {
-                templateUrl : 'wapp/view/userAdminPage.html',
-                controller: 'UserAdminController'
-            })
-            .when("/patient", {
                 templateUrl : 'wapp/view/patientPage.html',
                 controller: 'PatientController'
             })

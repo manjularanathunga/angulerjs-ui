@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+
+    <script src="wapp/app.js"></script>
+    <script src="wapp/controller/PatientController.js"></script>
+
+
+
+</head>
+<body ng-app="myApp">
+<div class="wrapper ">
+    <div class="delay d-flex align-items-center justify-content-center" ng-show="showDelay">
+        <div class="d-flex flex-row justify-content-center align-items-center">Loading please wait ....</div>
+    </div>
+    <div class="overlay"></div>
+
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h4>Medical Data Analysis System</h4>
+        </div>
+
+        <ul class="list-unstyled components">
+            <p>Nuclear Medicine Unit</p>
+            <li class="active">
+                <a aria-expanded="false" class="dropdown-toggle" data-toggle="collapse" href="#homeSubmenu">Administration</a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <li>
+                        <a href="#!useradmin">User Admin</a>
+                    </li>
+                    <li>
+                        <a href="#!patient">Patient</a>
+                    </li>
+                    <li>
+                        <a href="#!useradmin">Home 3</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">About</a>
+                <a aria-expanded="false" class="dropdown-toggle" data-toggle="collapse" href="#pageSubmenu">Pages</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu">
+                    <li>
+                        <a href="#">Page 1</a>
+                    </li>
+                    <li>
+                        <a href="#">Page 2</a>
+                    </li>
+                    <li>
+                        <a href="#">Page 3</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Portfolio</a>
+            </li>
+            <li>
+                <a href="#">Contact</a>
+            </li>
+        </ul>
+
+        <ul class="list-unstyled CTAs">
+            <li>
+                <a class="download" href="#">Information</a>
+            </li>
+            <li>
+                <a class="article" href="#">Article</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div id="content" style="padding-top: 4px;">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding-top: 2px; padding-bottom: 2px;">
+            <div class="container-fluid">
+
+                <button class="navbar-btn" id="sidebarCollapse" type="button">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                        class="btn btn-dark d-inline-block d-lg-none ml-auto" data-target="#navbarSupportedContent"
+                        data-toggle="collapse" type="button">
+                    <i class="fas fa-align-justify"></i>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent"
+                     style="padding-top: 0; padding-left: 0;">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item justify-content-sm-start">
+                            <a class="nav-link" href="#">{{pageTitle}}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">{{loggedUser}}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">{{presentDate | date:'short'}}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid">
+            <div ng-view></div>
+        </div>
+    </div>
+</div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+            $(this).toggleClass('active');
+        });
+    });
+</script>
+</body>
+</html>

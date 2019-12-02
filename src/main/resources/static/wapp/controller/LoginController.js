@@ -4,7 +4,7 @@ app.controller('LoginController', function($scope, $rootScope, $http, $location,
 
     $scope.loginToSystem = function() {
         // Pop.showMsg('success','sdsdsd');
-        UserService.GetByUsername('aaa');
+        UserService.GetAll();
         AuthenticationService.SetCredentials('', '');
     }
 

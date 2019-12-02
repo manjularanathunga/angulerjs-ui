@@ -1,10 +1,11 @@
-app.controller('LoginController', function($scope, $rootScope, $http, $location, $window, AuthenticationService) {
+app.controller('LoginController', function($scope, $rootScope, $http, $location, $window, AuthenticationService, UserService) {
     $rootScope.pageTitle = "Login";
     $scope.dataLoading = false;
 
     $scope.loginToSystem = function() {
-        // DlAlert.showMsg('','');
-        // UserService.loadAllUsers();
+        // Pop.showMsg('success','sdsdsd');
+        UserService.GetByUsername('aaa');
+        AuthenticationService.SetCredentials('', '');
     }
 
     var validateField = function(fieldToValidate, errmessage){

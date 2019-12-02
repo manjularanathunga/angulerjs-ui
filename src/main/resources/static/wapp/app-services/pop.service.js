@@ -3,12 +3,12 @@
 
     angular
         .module('app')
-        .factory('DlAlert', DlAlert);
+        .service('Pop', Pop);
 
-    DlAlert.$inject = ['$rootScope', '$window'];
+    Pop.$inject = ['$rootScope', '$window'];
 
 
-    function DlAlert($rootScope, $window) {
+    function Pop($rootScope, $window) {
         var service = {};
         service.showMsg = showMsg;
         service.showDelay = showDelay;

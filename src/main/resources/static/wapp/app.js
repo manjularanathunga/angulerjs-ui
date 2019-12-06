@@ -14,7 +14,7 @@ var app = angular.module('app',['ngRoute', 'ngCookies'])
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
            var restrictedPage = $.inArray($location.path(),['/login']) === -1;
            if(restrictedPage && $rootScope.currentUserId == false){
-               $location.path('/login');
+               // $location.path('/login');
            }
         });
     }])

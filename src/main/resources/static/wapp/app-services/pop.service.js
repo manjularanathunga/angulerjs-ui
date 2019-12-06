@@ -10,21 +10,57 @@
 
     function Pop($rootScope, $window) {
         var service = {};
-        service.showMsg = showMsg;
-        service.showDelay = showDelay;
+        service.msgWithButton = msgWithButton;
+        service.msgWithButtonTitle = msgWithButtonTitle;
+        service.msgWDelete = msgWDelete;
         service.setFocus = setFocus;
+        service.timeMsg = timeMsg;
 
         return service;
 
-        function showMsg(sign, msg) {
-            toast({
-                type: sign,
-                title: msg
+        function msgWithButton(title, text,icon) {
+            swal({
+                title: title,
+                text: text,
+                icon: icon,
             });
         }
 
-        function showDelay(type) {
-            $rootScope.showDelay(type)
+        function msgWithButtonTitle(title, text, icon, button) {
+            swal({
+                title: title,
+                text: text,
+                icon: icon,
+                button: button,
+            });
+        }
+
+        function msgWDelete(title,text,icon,yesmsg,nomsg) {
+            swal({
+                title: title,
+                text: text,
+                icon: icon,
+                buttons: true,
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    swal(yesmsg, {
+                        icon: "success",
+                    });
+                }else{
+                    swal(nomsg);
+                }
+            });
+        }
+
+        function timeMsg(sign,msg,title,timer) {
+            swal({
+                title: msg,
+                toast: title,
+                buttons: false,
+                position: 'top-end',
+                timer: timer,
+            });
         }
 
         function setFocus(obj) {
@@ -34,13 +70,4 @@
         }
 
     }
-
-    var toast = Swal.mixin({
-        toast : true,
-        position : 'top-end',
-        showConformButton: false,
-        timer:3500
-    });
-
-
 })();

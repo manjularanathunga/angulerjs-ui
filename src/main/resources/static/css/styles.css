@@ -229,3 +229,8 @@ a.article, a.article:hover {
 .fleft{
     float: left
 }
+
+.required:after {
+    content:" *";
+    color: red;
+}

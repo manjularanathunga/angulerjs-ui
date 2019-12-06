@@ -7,8 +7,8 @@
             <div class="col-sm-12">
                 <div class="form-group">
                     <span ng-show="useris_show">
-                        <label class="col-sm-1 fleft" for="userid">User Id</label>
-                        <select class="form-control col-sm-3 fleft" id="userid" ng-module="userid">
+                        <label class="col-sm-1 fleft" for="userid">User</label>
+                        <select class="form-control col-sm-3 fleft" id="selectuser" ng-module="userid">
                             <option ng-repeat="c in userAdminList">{{c.fistName}}</option>
                             <option>Admin</option>
                             <option>saman</option>
@@ -37,16 +37,16 @@
                 <div class="col-sm-6">
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <label class="col-sm-4 fleft" for="sel1">User Id</label>
-                           <input type="text" ng-model="users.userId" class="form-control col-sm-8 fleft" ng-disabled="component_is_disabled" >
+                            <label class="col-sm-4 fleft required" for="userId">User</label>
+                           <input type="text" id="userId" name="userId" ng-model="users.userId" class="form-control col-sm-8 fleft" ng-disabled="component_is_disabled" required>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <label class="col-sm-4 fleft" for="sel1">userRoles</label>
-                            <input type="text" ng-model="users.userRoles" class="form-control col-sm-8 fleft" ng-disabled="component_is_disabled" >
+                            <label class="col-sm-4 fleft required" for="sel1">userRoles</label>
+                            <input type="text" ng-model="users.userRoles" class="form-control col-sm-8 fleft" ng-disabled="component_is_disabled" required >
                         </div>
                     </div>
                 </div>
@@ -55,8 +55,8 @@
                 <div class="col-sm-6">
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <label class="col-sm-4 fleft" for="sel1">fistName</label>
-                            <input ng-model="users.fistName" class="form-control col-sm-8 fleft" ng-disabled="component_is_disabled" type="text">
+                            <label class="col-sm-4 fleft required" for="sel1">fistName</label>
+                            <input type="text"  ng-model="users.fistName" class="form-control col-sm-8 fleft" ng-disabled="component_is_disabled" required>
                         </div>
                     </div>
                 </div>
@@ -64,7 +64,7 @@
                     <div class="col-sm-12">
                         <div class="form-group">
                             <label class="col-sm-4 fleft" for="sel1">Email</label>
-                            <input ng-model="users.userEmail" class="form-control col-sm-8 fleft" ng-disabled="component_is_disabled" type="text">
+                            <input type="text" ng-model="users.userEmail" class="form-control col-sm-8 fleft" ng-disabled="component_is_disabled">
                         </div>
                     </div>
                 </div>
@@ -74,15 +74,15 @@
                     <div class="col-sm-12">
                         <div class="form-group">
                             <label class="col-sm-4 fleft" for="sel1">Middle Name</label>
-                            <input ng-model="users.middleName" class="form-control col-sm-8 fleft" ng-disabled="component_is_disabled" type="text">
+                            <input type="text" ng-model="users.middleName" class="form-control col-sm-8 fleft" ng-disabled="component_is_disabled">
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <label class="col-sm-4 fleft" for="sel1">userPFNumber</label>
-                            <input ng-model="users.userPFNumber" class="form-control col-sm-8 fleft" ng-disabled="component_is_disabled" type="text">
+                            <label class="col-sm-4 fleft required" for="sel1">userPFNumber</label>
+                            <input type="text" ng-model="users.userPFNumber" class="form-control col-sm-8 fleft" ng-disabled="component_is_disabled" required>
                         </div>
                     </div>
                 </div>
@@ -91,16 +91,16 @@
                 <div class="col-sm-6">
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <label class="col-sm-4 fleft" for="sel1">Last Name</label>
-                            <input ng-model="users.lastName" class="form-control col-sm-8 fleft" ng-disabled="component_is_disabled" type="text">
+                            <label class="col-sm-4 fleft required" for="sel1">Last Name</label>
+                            <input type="text" ng-model="users.lastName" class="form-control col-sm-8 fleft" ng-disabled="component_is_disabled" required>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <label class="col-sm-4 fleft" for="sel1">Telephone</label>
-                            <input ng-model="users.telNumber" class="form-control col-sm-8 fleft" ng-disabled="component_is_disabled" type="text">
+                            <label class="col-sm-4 fleft required" for="sel1">Telephone</label>
+                            <input type="text" ng-model="users.telNumber" class="form-control col-sm-8 fleft" ng-disabled="component_is_disabled" required>
                         </div>
                     </div>
                 </div>

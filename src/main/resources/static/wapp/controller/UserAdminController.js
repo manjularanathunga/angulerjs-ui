@@ -18,7 +18,7 @@ app.controller('UserAdminController', function($scope,$rootScope, $http, $locati
     $scope.useradmin = {};
     $scope.users={};
     $scope.component_is_disabled = true;
-    $scope.userid = '';
+    $scope.selectuser = '';
 
     $scope.reset = function () {
         $scope.useris_show = true;

@@ -97,8 +97,17 @@ app.controller('UserAdminController', function($scope,$rootScope, $http, $locati
     }
 
     $scope.reset_password = function () {
-        disable_Button();
+        $scope.usr=$scope.selectuser;
+        if(!$scope.selectuser.id){
+            Pop.msgWithButton('RESET PASSWORD', 'User not selected','warning');
+            return;
+        }
         $scope.actionType = 'reset_password';
+        item.lastDateModified = new Date();
+        var randomPassword =  item.userId+'@'+item.userPFNumber;
+        item.passWord = randomPassword;
+        reset_screen();
+        Pop.msgWithButton('Password has been reset for user <<'+ item.fistName + '>> ','User <<'+ item.userId + '>> password has been reset, Auto generated password for the user : <<'+item.userId+'>> is : <<' + item.passWord +'>>', 'success');
     }
 
     $scope.save_submit = function () {

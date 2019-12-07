@@ -4,8 +4,6 @@ app.controller('LoginController', function($scope, $rootScope, $http, $location,
     $scope.auser = {};
     $scope.dataLoading = true;
 
-
-
     AuthenticationService.ClearCredentials();
 
     $scope.loginToSystem = function(username,password) {

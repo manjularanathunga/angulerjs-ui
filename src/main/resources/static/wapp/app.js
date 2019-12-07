@@ -5,7 +5,7 @@ var app = angular.module('app',['ngRoute', 'ngCookies'])
         $rootScope.currentUserId= $window.localStorage.getItem('mdbUserId') || false;
         $rootScope.mdbRole= $window.localStorage.getItem('mdbRole') || false;
         $rootScope.authdata= $window.localStorage.getItem('mdbAuthData') || false;
-        $rootScope.mdbloggedUser= $window.localStorage.getItem('mdbloggedUser') || false;
+        $rootScope.mdbloggedUser = $window.localStorage.getItem('mdbloggedUser');
 
         $rootScope.presentDate = new Date();
         $rootScope.mainTitle = "Medical Data Analysis System";
@@ -46,4 +46,9 @@ var app = angular.module('app',['ngRoute', 'ngCookies'])
                 templateUrl : 'wapp/view/patientPage.html',
                 controller: 'PatientController'
             })
+            .when("/logout", {
+                templateUrl : 'wapp/view/logoutPage.html',
+                controller: 'LogoutController'
+            })
+
     }]);

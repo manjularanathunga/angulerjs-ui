@@ -41,15 +41,11 @@
         }
 
         function SetCredentials(username, password, response) {
-            console.log('SetCredentials - response > ' + JSON.stringify(response));
 
             var lsuserid = response.data.response.userId;
             var lsuserroles = response.data.response.userRoles;
             var lsloggedUser = response.data.response.fistName + '' + response.data.response.lastName;
-
             var authdata = Base64.encode(username + ':' + password);
-
-
 
             $rootScope.globals = {
                 currentUser: {
@@ -57,9 +53,6 @@
                     authdata: authdata
                 }
             };
-
-
-            console.log('response > ' + lsuserid + ' | lsuserroles > ' + lsuserroles);
 
             $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata;
             $window.localStorage.setItem('mdbUserId',lsuserid);
@@ -74,6 +67,7 @@
         }
 
         function ClearCredentials() {
+            console.log('call ClearCredentials');
             $rootScope.globals = {};
             $cookies.remove('globals');
             $http.defaults.headers.common.Authorization = 'Basic';

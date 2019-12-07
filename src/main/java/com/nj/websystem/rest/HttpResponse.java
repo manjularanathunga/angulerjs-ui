@@ -2,17 +2,16 @@ package com.nj.websystem.rest;
 
 public class HttpResponse {
 
-    private String responce;
+    private Object responce;
     private boolean success;
     private String exception;
     private int recCount;
-    private Object resObjects;
 
-    public String getResponce() {
+    public Object getResponce() {
         return responce;
     }
 
-    public void setResponce(String responce) {
+    public void setResponce(Object responce) {
         this.responce = responce;
     }
 
@@ -38,13 +37,5 @@ public class HttpResponse {
 
     public void setRecCount(int recCount) {
         this.recCount = recCount;
-    }
-
-    public Object getResObjects() {
-        return resObjects;
-    }
-
-    public void setResObjects(Object resObjects) {
-        this.resObjects = resObjects;
     }
 }

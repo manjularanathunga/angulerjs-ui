@@ -1,6 +1,7 @@
 package com.nj.websystem.controller;
 
 import com.nj.websystem.model.UserAdmin;
+import com.nj.websystem.rest.AuthRequest;
 import com.nj.websystem.rest.HttpResponse;
 import com.nj.websystem.service.UserAdminService;
 import org.slf4j.Logger;
@@ -28,13 +29,46 @@ public class LoggingController {
         return list;
     }
 
+    @RequestMapping(value = "/authenticate", method = RequestMethod.POST, headers = "Accept=application/json")
+    public HttpResponse authenticate(@RequestBody AuthRequest request){
+        logger.info("authenticate Name : {} " + request.getUsername());
+        List<UserAdmin> userAdminList = services.findByUserId(request.getUsername());
+        HttpResponse res;
+        if(userAdminList.size() > 0){
+            UserAdmin userAdmin = userAdminList.get(0);
+            if(userAdmin.getPassWord().trim().equals(request.getPassword().trim())){
+                res = new HttpResponse();
+                res.setResponce(userAdmin);
+                res.setSuccess(true);
+                res.setRecCount(1);
+                return res;
+            }else{
+                res = new HttpResponse();
+                res.setResponce(null);
+                res.setSuccess(false);
+                res.setRecCount(0);
+                res.setException("Password incorrect!");
+                return res;
+            }
+        }else {
+            res = new HttpResponse();
+            res.setResponce(null);
+            res.setSuccess(false);
+            res.setRecCount(1);
+            res.setException("User not found in the system!");
+            return res;
+        }
+
+    }
+
+
     @RequestMapping(value = "/getById", method = RequestMethod.GET, headers = "Accept=application/json")
     public HttpResponse getById(@RequestParam(value = "id", required = false)String id){
         logger.info("Request UserAdmin Id : {} " + id );
       HttpResponse res = new HttpResponse();
         List<UserAdmin> userList = services.findByUserId(id);
         if(userList != null && userList.size() > 0){
-            res.setResObjects(userList.get(0));
+            res.setResponce(userList.get(0));
             res.setSuccess(true);
             res.setRecCount(1);
         }else{
@@ -50,7 +84,7 @@ public class LoggingController {
         HttpResponse res = new HttpResponse();
         List result = services.findByUserId(username);
         if(result.size() > 0){
-            res.setResObjects(result);
+            res.setResponce(result);
             res.setSuccess(true);
             res.setRecCount(result.size());
         }else{

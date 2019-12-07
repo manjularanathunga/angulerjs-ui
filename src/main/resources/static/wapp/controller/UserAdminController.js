@@ -35,6 +35,7 @@ app.controller('UserAdminController', function($scope,$rootScope, $http, $locati
         $scope.usr = {};
         $scope.useris_show = true;
         restore_Button();
+        loadList();
     }
 
     var restore_Button = function () {
@@ -114,27 +115,28 @@ app.controller('UserAdminController', function($scope,$rootScope, $http, $locati
             }*/
             //if(validateFields(item)){return;}
             item.lastDateModified = new Date();
-
+            var randomPassword =  item.userId+'@'+item.userPFNumber;
+            item.passWord = randomPassword;
             $http.post('/users/save', item).
             then(function(response) {
                 loadList();
                 reset_screen();
-                Pop.msgWithButton('Save User '+ item.fistName, 'SAVE','success');
+                Pop.msgWithButton('New User <<'+ item.fistName + '>> Created','New user <<'+ item.userId + '>>has been created, Auto generated password for the first login user : <<'+item.userId+'>> is : <<' + item.passWord +'>>', 'success');
             }, function(response) {
-                Pop.msgWithButton('Fail User '+ item.fistName + ' Saving', 'UPDATE','error');
+                Pop.msgWithButton('UPDATE','Fail User '+ item.fistName + ' Saving', 'error');
             });
         }else if(actionType === 'edit'){
             $http.post('/users/save', item).
             then(function(response) {
                 loadList();
                 reset_screen();
-                Pop.msgWithButton('Update User '+ item.fistName, 'SAVE','success');
+                Pop.msgWithButton('SAVE','Update User '+ item.fistName, 'success');
             }, function(response) {
-                Pop.msgWithButton('Fail User '+ item.fistName + ' Updat', 'UPDATE','error');
+                Pop.msgWithButton('UPDATE','Fail User '+ item.fistName + ' Updat', 'error');
             });
         }else if(actionType === 'delete'){
             $http.delete("users/delete?id=" + item.id);
-            Pop.msgWithButton('Deleted USER '+ item.fistName + ' Delete', 'DELETE','error');
+            Pop.msgWithButton('DELETE','Deleted USER <<'+ item.fistName + '>> ', 'success');
             reset_screen();
         }
     }

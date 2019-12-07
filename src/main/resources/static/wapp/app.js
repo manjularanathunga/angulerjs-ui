@@ -8,15 +8,18 @@ var app = angular.module('app',['ngRoute', 'ngCookies'])
         $rootScope.currentUserId= $window.localStorage.getItem('mdbUserId') || false;
         $rootScope.mdbRole= $window.localStorage.getItem('mdbRole') || false;
         $rootScope.authdata= $window.localStorage.getItem('mdbAuthData') || false;
-        if($rootScope.currentUserId){
+
+
+/*        if($rootScope.currentUserId){
             $http.defaults.headers.common[''] = 'Basic ' + $rootScope.authdata;
         }
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
            var restrictedPage = $.inArray($location.path(),['/login']) === -1;
            if(restrictedPage && $rootScope.currentUserId == false){
-               // $location.path('/login');
+               $location.path('/');
            }
-        });
+        });*/
+
     }])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
@@ -24,9 +27,9 @@ var app = angular.module('app',['ngRoute', 'ngCookies'])
                 templateUrl : 'wapp/view/loginPage.html',
                 controller: 'LoginController'
             })
-            .when("/login", {
-                templateUrl : 'wapp/view/loginPage.html',
-                controller: 'LoginController'
+            .when("/dashboard", {
+                templateUrl : 'wapp/view/dashboardPage.html',
+                controller: 'DashboardController'
             })
             .when("/useradmin", {
                 templateUrl : 'wapp/view/userAdminPage.html',

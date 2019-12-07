@@ -6,7 +6,7 @@ public class HttpResponse {
     private boolean success;
     private String exception;
     private int recCount;
-    private Object data;
+    private Object resObjects;
 
     public String getResponce() {
         return responce;
@@ -40,11 +40,11 @@ public class HttpResponse {
         this.recCount = recCount;
     }
 
-    public Object getData() {
-        return data;
+    public Object getResObjects() {
+        return resObjects;
     }
 
-    public void setData(Object data) {
-        this.data = data;
+    public void setResObjects(Object resObjects) {
+        this.resObjects = resObjects;
     }
 }

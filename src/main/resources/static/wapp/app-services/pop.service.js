@@ -35,24 +35,6 @@
             });
         }
 
-        function msgWDelete(title,text,icon,yesmsg,nomsg) {
-            swal({
-                title: title,
-                text: text,
-                icon: icon,
-                buttons: true,
-                dangerMode: true,
-            }).then((willDelete) => {
-                if (willDelete) {
-                    swal(yesmsg, {
-                        icon: "success",
-                    });
-                }else{
-                    swal(nomsg);
-                }
-            });
-        }
-
         function timeMsg(sign,msg,title,timer) {
             swal({
                 title: msg,
@@ -60,6 +42,17 @@
                 buttons: false,
                 position: 'top-end',
                 timer: timer,
+            });
+        }
+
+        function msgWDelete(icon,msg,title,timer) {
+            swal({
+                icon:icon,
+                title: msg,
+                text: title,
+                buttons: false,
+                position: 'top-end',
+                timer: timer
             });
         }
 

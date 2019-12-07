@@ -29,19 +29,28 @@ public class LoggingController {
     }
 
     @RequestMapping(value = "/getById", method = RequestMethod.GET, headers = "Accept=application/json")
-    public UserAdmin getById(@RequestParam(value = "id", required = false)long id){
+    public HttpResponse getById(@RequestParam(value = "id", required = false)String id){
         logger.info("Request UserAdmin Id : {} " + id );
-        return services.getOne(id);
+      HttpResponse res = new HttpResponse();
+        List<UserAdmin> userList = services.findByUserId(id);
+        if(userList != null && userList.size() > 0){
+            res.setResObjects(userList.get(0));
+            res.setSuccess(true);
+            res.setRecCount(1);
+        }else{
+            res.setSuccess(false);
+            res.setException("Invalid User !");
+        }
+        return res;
     }
 
     @RequestMapping(value = "/{username}", method = RequestMethod.GET)
-    @ResponseBody
     public HttpResponse findByUserId(@PathVariable(value = "username", required = true) String username) {
         logger.info("Request UserAdmin username : {} " + username );
         HttpResponse res = new HttpResponse();
         List result = services.findByUserId(username);
         if(result.size() > 0){
-            res.setData(result);
+            res.setResObjects(result);
             res.setSuccess(true);
             res.setRecCount(result.size());
         }else{

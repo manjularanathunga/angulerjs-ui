@@ -1,4 +1,4 @@
-app.controller('UserAdminController', function($scope,$rootScope, $http, $location, $window, Pop) {
+app.controller('UserAdminController', function($scope,$rootScope, $http, $location, $window, Pop, UserService) {
     $rootScope.pageTitle = "useradmin";
 
     var loggedUser = '-';
@@ -15,10 +15,10 @@ app.controller('UserAdminController', function($scope,$rootScope, $http, $locati
 
     $scope.useris_show = true;
     $scope.actionType = '';
-    $scope.useradmin = {};
-    $scope.users={};
+    $scope.usr={};
     $scope.component_is_disabled = true;
-    $scope.selectuser = '';
+    $scope.selectuser = {}; // used selector
+    $scope.btnSubmitText = 'SAVE';
 
     $scope.reset = function () {
         $scope.useris_show = true;
@@ -26,14 +26,15 @@ app.controller('UserAdminController', function($scope,$rootScope, $http, $locati
     }
 
     var reset_component = function(){
-        $scope.useradmin = {};
+        $scope.usr = {};
     }
 
     var reset_screen =function () {
         $scope.component_is_disabled = true;
         $scope.actionType = '';
+        $scope.usr = {};
+        $scope.useris_show = true;
         restore_Button();
-
     }
 
     var restore_Button = function () {
@@ -44,6 +45,7 @@ app.controller('UserAdminController', function($scope,$rootScope, $http, $locati
         $scope.btnPwRstShow = true;
         $scope.btnResetShow = false;
         $scope.save_is_disabled = true;
+        $scope.btnSubmitText = 'SAVE';
     }
 
     var disable_Button = function () {
@@ -57,24 +59,40 @@ app.controller('UserAdminController', function($scope,$rootScope, $http, $locati
     }
 
     $scope.add = function () {
+        $scope.usr = {};
+        $scope.selectuser={};
         disable_Button();
         $scope.actionType = 'add';
         $scope.useris_show = false;
         $scope.component_is_disabled = false;
+        $scope.btnSubmitText = 'SAVE';
     }
 
     $scope.edit = function () {
+        $scope.usr=$scope.selectuser;
+        if(!$scope.selectuser.id){
+            Pop.msgWithButton('Please select user', 'USER NOT SELECTED','warning');
+            return;
+        }
         disable_Button();
+        $scope.usr=$scope.selectuser;
         $scope.actionType = 'edit';
-
         $scope.useris_show = false;
         $scope.component_is_disabled = false;
+        $scope.btnSubmitText = 'UPDATE';
     }
 
     $scope.delete = function () {
+        $scope.usr=$scope.selectuser;
+        if(!$scope.selectuser.id){
+            Pop.msgWithButton('Please select user', 'USER NOT SELECTED','warning');
+            return;
+        }
         disable_Button();
         $scope.actionType = 'delete';
         $scope.useris_show = false;
+        $scope.btnSubmitText = 'DELETE';
+        Pop.msgWDelete('error','DELETE','Are you sure to delete the user ' + $scope.usr.fistName,3000)
     }
 
     $scope.reset_password = function () {
@@ -84,23 +102,40 @@ app.controller('UserAdminController', function($scope,$rootScope, $http, $locati
 
     $scope.save_submit = function () {
         var actionType = $scope.actionType;
-        var item = $scope.useradmin;
+        var item = $scope.usr;
         item.dateCreated = new Date();
         item.actionBy = loggedUser;
-        console.log('actionType >' + actionType);
-        console.log('$scope.users >' + JSON.stringify($scope.users));
+        // console.log('actionType >' + actionType);
+        // console.log('item >' + JSON.stringify(item));
         if(actionType === 'add'){
-            if(isEmpty(item.userId)){
+            /*if(isEmpty(item.userId)){
                 Pop.timeMsg('warning','USERID Cannot be empty','Warning Message',1000);
                 return true;
-            }
-            if(validateFields(item)){return;}
+            }*/
+            //if(validateFields(item)){return;}
             item.lastDateModified = new Date();
-            Pop.msgWithButton('Save User '+ item.fistName, 'SAVE','success');
+
+            $http.post('/users/save', item).
+            then(function(response) {
+                loadList();
+                reset_screen();
+                Pop.msgWithButton('Save User '+ item.fistName, 'SAVE','success');
+            }, function(response) {
+                Pop.msgWithButton('Fail User '+ item.fistName + ' Saving', 'UPDATE','error');
+            });
         }else if(actionType === 'edit'){
-            Pop.msgWithButton('Updated User '+ item.fistName, 'UPDATE','success');
+            $http.post('/users/save', item).
+            then(function(response) {
+                loadList();
+                reset_screen();
+                Pop.msgWithButton('Update User '+ item.fistName, 'SAVE','success');
+            }, function(response) {
+                Pop.msgWithButton('Fail User '+ item.fistName + ' Updat', 'UPDATE','error');
+            });
         }else if(actionType === 'delete'){
-            Pop.msgWDelete('DELETE USER','Are sure to delete User ' + item.fistName,'warning','User has been delete','delete aborted')
+            $http.delete("users/delete?id=" + item.id);
+            Pop.msgWithButton('Deleted USER '+ item.fistName + ' Delete', 'DELETE','error');
+            reset_screen();
         }
     }
 
@@ -142,6 +177,14 @@ app.controller('UserAdminController', function($scope,$rootScope, $http, $locati
         }
         return false;
     }
+
+    $scope.onSelectAdminUser = function () {
+        if($scope.selectuser){
+            $http.get("users/getById?id=" + $scope.selectuser.userId).then(function (response) {
+                $scope.usr = response.data.resObjects;
+            });
+        }
+    };
 
     var loadList = function () {
         $http.get("users/getList").then(function (response) {

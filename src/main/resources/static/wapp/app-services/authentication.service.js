@@ -40,8 +40,16 @@
             });
         }
 
-        function SetCredentials(username, password, responce) {
+        function SetCredentials(username, password, response) {
+            console.log('SetCredentials - response > ' + JSON.stringify(response));
+
+            var lsuserid = response.data.response.userId;
+            var lsuserroles = response.data.response.userRoles;
+            var lsloggedUser = response.data.response.fistName + '' + response.data.response.lastName;
+
             var authdata = Base64.encode(username + ':' + password);
+
+
 
             $rootScope.globals = {
                 currentUser: {
@@ -50,10 +58,14 @@
                 }
             };
 
+
+            console.log('response > ' + lsuserid + ' | lsuserroles > ' + lsuserroles);
+
             $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata;
-            $window.localStorage.setItem('mdbUserId',responce.userId);
-            $window.localStorage.setItem('mdbRole',responce.userRoles);
+            $window.localStorage.setItem('mdbUserId',lsuserid);
+            $window.localStorage.setItem('mdbRole',lsuserroles);
             $window.localStorage.setItem('mdbAuthData',authdata);
+            $window.localStorage.setItem('mdbloggedUser',lsloggedUser);
 
             // store user details in globals cookie that keeps user logged in for 1 week (or until they logout) cookieExp.setDate(cookieExp.getDate() + 7);
             var cookieExp = new Date();
@@ -68,6 +80,7 @@
             $window.localStorage.removeItem('mdbUserId');
             $window.localStorage.removeItem('mdbRole');
             $window.localStorage.removeItem('mdbAuthData');
+            $window.localStorage.removeItem('mdbUsername');
         }
     }
 

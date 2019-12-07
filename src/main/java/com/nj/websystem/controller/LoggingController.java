@@ -38,13 +38,13 @@ public class LoggingController {
             UserAdmin userAdmin = userAdminList.get(0);
             if(userAdmin.getPassWord().trim().equals(request.getPassword().trim())){
                 res = new HttpResponse();
-                res.setResponce(userAdmin);
+                res.setResponse(userAdmin);
                 res.setSuccess(true);
                 res.setRecCount(1);
                 return res;
             }else{
                 res = new HttpResponse();
-                res.setResponce(null);
+                res.setResponse(null);
                 res.setSuccess(false);
                 res.setRecCount(0);
                 res.setException("Password incorrect!");
@@ -52,7 +52,7 @@ public class LoggingController {
             }
         }else {
             res = new HttpResponse();
-            res.setResponce(null);
+            res.setResponse(null);
             res.setSuccess(false);
             res.setRecCount(1);
             res.setException("User not found in the system!");
@@ -68,7 +68,7 @@ public class LoggingController {
       HttpResponse res = new HttpResponse();
         List<UserAdmin> userList = services.findByUserId(id);
         if(userList != null && userList.size() > 0){
-            res.setResponce(userList.get(0));
+            res.setResponse(userList.get(0));
             res.setSuccess(true);
             res.setRecCount(1);
         }else{
@@ -84,7 +84,7 @@ public class LoggingController {
         HttpResponse res = new HttpResponse();
         List result = services.findByUserId(username);
         if(result.size() > 0){
-            res.setResponce(result);
+            res.setResponse(result);
             res.setSuccess(true);
             res.setRecCount(result.size());
         }else{

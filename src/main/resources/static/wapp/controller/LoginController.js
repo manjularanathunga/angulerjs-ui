@@ -9,14 +9,11 @@ app.controller('LoginController', function($scope, $rootScope, $http, $location,
     AuthenticationService.ClearCredentials();
 
     $scope.loginToSystem = function(username,password) {
-        // Pop.showMsg('success','sdsdsd');
-        //UserService.GetAll();
-        //AuthenticationService.SetCredentials('', '');
         $http.post('/users/authenticate', { username: $scope.auser.username, password: $scope.auser.password }).
         then(function(response) {
             // console.log('response > ' + JSON.stringify(response));
             if(response.data.success){
-                AuthenticationService.SetCredentials($scope.auser.username, $scope.auser.password,response.data);
+                AuthenticationService.SetCredentials($scope.auser.username, $scope.auser.password,response);
                 $location.path('/dashboard');
             }else{
                 Pop.timeMsg('warning','ERROR LOGGING',response.data.exception,2000);exception

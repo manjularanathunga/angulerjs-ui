@@ -2,17 +2,17 @@ package com.nj.websystem.rest;
 
 public class HttpResponse {
 
-    private Object responce;
+    private Object response;
     private boolean success;
     private String exception;
     private int recCount;
 
-    public Object getResponce() {
-        return responce;
+    public Object getResponse() {
+        return response;
     }
 
-    public void setResponce(Object responce) {
-        this.responce = responce;
+    public void setResponse(Object response) {
+        this.response = response;
     }
 
     public boolean isSuccess() {

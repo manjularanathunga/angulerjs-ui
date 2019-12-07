@@ -35,10 +35,11 @@
             });
         }
 
-        function timeMsg(sign,msg,title,timer) {
+        function timeMsg(icon,title,msg,timer) {
             swal({
-                title: msg,
-                toast: title,
+                icon:icon,
+                title: title,
+                text: msg,
                 buttons: false,
                 position: 'top-end',
                 timer: timer,

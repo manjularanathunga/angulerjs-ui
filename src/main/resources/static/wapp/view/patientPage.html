@@ -32,11 +32,18 @@
                 <thead class="bg-secondary text-light">
                 <tr>
                     <th class="first-col" width="2%">&nbsp;</th>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th># of Space</th>
-                    <th>Remarks</th>
-                    <th>Status</th>
+                    <th>PATIENTID</th>
+                    <th>NICNumber</th>
+                    <th>OTHER</th>
+                    <th>PATIENTNAME</th>
+                    <th>TELNUMBER</th>
+                    <th>DATEOFBIRTH</th>
+                    <th>sex</th>
+                    <th>SEENBY</th>
+                    <th>ACTIONBY</th>
+                    <th>DATECREATED</th>
+                    <th>LASTMODIFIED</th>
+                    <th>STATUS</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -49,11 +56,18 @@
                             </button>
                         </div>
                     </td>
-                    <td>{{itm.buildingNumber}}</td>
-                    <td>{{itm.name}}</td>
-                    <td>{{itm.noOfRooms}}</td>
-                    <td>{{itm.remarks}}</td>
-                    <td>{{itm.status}}</td>
+                    <th>{{itm.patientId}}</th>
+                    <th>{{itm.nicNumber}}</th>
+                    <th>{{itm.other}}</th>
+                    <th>{{itm.patientName}}</th>
+                    <th>{{itm.telNumber}}</th>
+                    <th>{{itm.dateOfBirth}}</th>
+                    <th>{{itm.sex}}</th>
+                    <th>{{itm.seenBy}}</th>
+                    <th>{{itm.actionBy}}</th>
+                    <th>{{itm.dateCreated}}</th>
+                    <th>{{itm.lastModified}}</th>
+                    <th>{{itm.status}}</th>
                 </tr>
                 </tbody>
             </table>
@@ -101,7 +115,7 @@
                                     <label class="font-size-sm"># of Rooms</label>
                                 </div>
                                 <div class="col-sm-3">
-                                    <input ng-disabled="itemDisabled" ng-model="patient.noOfRooms" type="number">
+                                    <input ng-disabled="itemDisabled" ng-model="patient.noOfRooms" type="text">
                                 </div>
                             </div>
                         </div>
@@ -120,7 +134,7 @@
                     </div>
                     <div class="col-sm-12">
                         <div class="d-flex justify-content-sm-end">
-                            <button class="btn btn-primary" data-dismiss="modal" ng-click="save()" type="button">Save
+                            <button class="btn btn-primary" data-dismiss="modal" ng-click="saveModal()" type="button">Save
                             </button>&nbsp;
                             <button class="btn btn-warning" ng-click="clearModal()" type="button">Refresh</button>&nbsp;
                             <button class="btn btn-danger" data-dismiss="modal" type="button">Close</button>

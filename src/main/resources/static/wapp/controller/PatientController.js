@@ -13,8 +13,8 @@ app.controller('PatientController', function($scope,$rootScope, $http, $location
         $("#modal-inv").modal("show");
     };
 
-    $scope.save_submit = function () {
-        $http.post('/users/save', $scope.patient).
+    $scope.saveModal = function () {
+        $http.post('/patient/save', $scope.patient).
         then(function(response) {
             loadList();
             //reset_screen();

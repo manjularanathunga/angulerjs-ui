@@ -19,6 +19,7 @@ app.controller('UserAdminController', function($scope,$rootScope, $http, $locati
     $scope.component_is_disabled = true;
     $scope.selectuser = {}; // used selector
     $scope.btnSubmitText = 'SAVE';
+    $scope.userAdminList=[];
 
     $scope.reset = function () {
         $scope.useris_show = true;

@@ -234,3 +234,42 @@ a.article, a.article:hover {
     content:" *";
     color: red;
 }
+
+.red{
+    color: red;
+}
+
+.tleft{
+    text-align: left;
+}
+
+.tright{
+    text-align: right;
+}
+
+.tcenter{
+    text-align: center;
+}
+
+.delay{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    color: white;
+    background: rgba(0,0,0,0.2);
+    z-index: 998;
+    display: none;
+}
+
+.modal-backdrop {
+    position: inherit;
+}
+
+.tleft{
+    text-align: left;
+}
+
+.tright{
+    text-align: right;
+}
+

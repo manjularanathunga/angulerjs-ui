@@ -12,8 +12,8 @@ public class UserAdmin {
 
     @Id
     @Column(name = "id", nullable = false)
-    @SequenceGenerator(name = "TBL_USER_ADMIN_SEQ", sequenceName = "TBL_USER_ADMIN_SEQ" )
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TTBL_USER_ADMIN_SEQ")
+    @SequenceGenerator(name = "TBL_USER_ADMIN_SEQ", sequenceName = "TBL_USER_ADMIN_SEQ", allocationSize=1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TBL_USER_ADMIN_SEQ")
     private Long id;
     private String userId;
     private String fistName;

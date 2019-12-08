@@ -97,8 +97,8 @@ app.controller('UserAdminController', function($scope,$rootScope, $http, $locati
     }
 
     $scope.reset_password = function () {
-        $scope.usr=$scope.selectuser;
-        if(!$scope.selectuser.id){
+        var item = $scope.selectuser;
+        if(!item.id){
             Pop.msgWithButton('RESET PASSWORD', 'User not selected','warning');
             return;
         }
@@ -106,8 +106,14 @@ app.controller('UserAdminController', function($scope,$rootScope, $http, $locati
         item.lastDateModified = new Date();
         var randomPassword =  item.userId+'@'+item.userPFNumber;
         item.passWord = randomPassword;
-        reset_screen();
-        Pop.msgWithButton('Password has been reset for user <<'+ item.fistName + '>> ','User <<'+ item.userId + '>> password has been reset, Auto generated password for the user : <<'+item.userId+'>> is : <<' + item.passWord +'>>', 'success');
+        $http.post('/users/save', item).
+        then(function(response) {
+            loadList();
+            reset_screen();
+            Pop.msgWithButton('Password has been reset for user <<'+ item.fistName + '>> ','User <<'+ item.userId + '>> password has been reset, Auto generated password for the user : <<'+item.userId+'>> is : <<' + item.passWord +'>>', 'success');
+        }, function(response) {
+            Pop.msgWithButton('RESET PASSWORD','Fail to reset password for User '+ item.fistName , 'error');
+        });
     }
 
     $scope.save_submit = function () {
@@ -128,7 +134,6 @@ app.controller('UserAdminController', function($scope,$rootScope, $http, $locati
             item.passWord = randomPassword;
             $http.post('/users/save', item).
             then(function(response) {
-                loadList();
                 reset_screen();
                 Pop.msgWithButton('New User <<'+ item.fistName + '>> Created','New user <<'+ item.userId + '>>has been created, Auto generated password for the first login user : <<'+item.userId+'>> is : <<' + item.passWord +'>>', 'success');
             }, function(response) {
@@ -137,7 +142,6 @@ app.controller('UserAdminController', function($scope,$rootScope, $http, $locati
         }else if(actionType === 'edit'){
             $http.post('/users/save', item).
             then(function(response) {
-                loadList();
                 reset_screen();
                 Pop.msgWithButton('SAVE','Update User '+ item.fistName, 'success');
             }, function(response) {
@@ -191,8 +195,11 @@ app.controller('UserAdminController', function($scope,$rootScope, $http, $locati
 
     $scope.onSelectAdminUser = function () {
         if($scope.selectuser){
-            $http.get("users/getById?id=" + $scope.selectuser.userId).then(function (response) {
-                $scope.usr = response.data.resObjects;
+            $http.get("users/getById?id=" + $scope.selectuser.userId).
+            then(function(response) {
+                $scope.usr = response.data.response;
+            }, function(response) {
+                // Pop.msgWithButton('UPDATE','Fail User '+ item.fistName + ' Updat', 'error');
             });
         }
     };

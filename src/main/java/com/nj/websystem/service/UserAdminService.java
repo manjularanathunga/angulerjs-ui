@@ -1,9 +1,7 @@
 package com.nj.websystem.service;
 
-import com.nj.websystem.enums.Status;
 import com.nj.websystem.model.UserAdmin;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 

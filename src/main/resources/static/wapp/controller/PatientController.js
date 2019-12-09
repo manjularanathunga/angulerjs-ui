@@ -3,6 +3,10 @@ app.controller('PatientController', function($scope,$rootScope, $http, $location
 
     $scope.patientList=[];
     $scope.patient={};
+    $scope.heading='Edit Patient Details';
+    $scope.itemDisabled=false;
+    $scope.actionType='';
+    $scope.genderLst=['MALE','FEMALE'];
 
     var loggedUser = '-';
     if($rootScope.globals && $rootScope.globals.currentUser){
@@ -10,10 +14,33 @@ app.controller('PatientController', function($scope,$rootScope, $http, $location
     }
 
     $scope.showUI = function (itm, opType) {
+        $scope.actionType = opType;
+        if('add' === $scope.actionType){
+            $scope.itemDisabled=false;
+            $scope.patient={};
+        }else if('edit' === $scope.actionType){
+            $scope.itemDisabled=false;
+            $scope.patient=itm;
+            $scope.patient.dateOfBirth=new Date(itm.dateOfBirth);
+        }else if('delete' === $scope.actionType){
+            $scope.itemDisabled=true;
+            $scope.patient=itm;
+        }
         $("#modal-inv").modal("show");
     };
 
     $scope.saveModal = function () {
+        $scope.patient.lastModified =new Date();
+
+        if('add' === $scope.actionType){
+            $scope.patient.dateCreated =new Date();
+        }else if('edit' === $scope.actionType){
+            $scope.patient.status = 'ACTIVE';
+
+        }else if('delete' === $scope.actionType){
+            $scope.patient.status = 'DELETED';
+        }
+
         $http.post('/patient/save', $scope.patient).
         then(function(response) {
             loadList();

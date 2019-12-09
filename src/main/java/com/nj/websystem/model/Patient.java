@@ -1,5 +1,6 @@
 package com.nj.websystem.model;
 
+import com.nj.websystem.enums.Gender;
 import com.nj.websystem.enums.Status;
 
 import javax.persistence.*;
@@ -21,7 +22,7 @@ public class Patient {
     private String patientName;
     private String telNumber;
     private Date dateOfBirth;
-    private String sex;
+    private Gender gender;
     private String seenBy;
     private String actionBy;
     private Date dateCreated;
@@ -84,12 +85,12 @@ public class Patient {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String getSex() {
-        return sex;
+    public Gender getGender() {
+        return gender;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 
     public String getSeenBy() {

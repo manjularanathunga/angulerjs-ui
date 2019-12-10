@@ -22,7 +22,7 @@ var app = angular.module('app',['ngRoute', 'ngCookies'])
             var restrictedPage = $.inArray($location.path(), ['/login', '/register']) === -1;
             var loggedIn = $rootScope.globals.currentUser;
             if (restrictedPage && !loggedIn) {
-                $location.path('/login');
+                // $location.path('/login');
             }
         });
 
@@ -49,6 +49,10 @@ var app = angular.module('app',['ngRoute', 'ngCookies'])
             .when("/logout", {
                 templateUrl : 'wapp/view/logoutPage.html',
                 controller: 'LogoutController'
+            })
+            .when("/billing", {
+                templateUrl : 'wapp/view/billingPage.html',
+                controller: 'BillingController'
             })
 
     }]);

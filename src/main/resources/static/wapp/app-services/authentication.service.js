@@ -44,7 +44,7 @@
 
             var lsuserid = response.data.response.userId;
             var lsuserroles = response.data.response.userRoles;
-            var lsloggedUser = response.data.response.fistName + '' + response.data.response.lastName;
+            var lsloggedUser = response.data.response.fistName + ' ' + response.data.response.lastName;
             var authdata = Base64.encode(username + ':' + password);
 
             $rootScope.globals = {
@@ -59,6 +59,7 @@
             $window.localStorage.setItem('mdbRole',lsuserroles);
             $window.localStorage.setItem('mdbAuthData',authdata);
             $window.localStorage.setItem('mdbloggedUser',lsloggedUser);
+            $rootScope.loggedUser=lsloggedUser;
 
             // store user details in globals cookie that keeps user logged in for 1 week (or until they logout) cookieExp.setDate(cookieExp.getDate() + 7);
             var cookieExp = new Date();
@@ -71,10 +72,13 @@
             $rootScope.globals = {};
             $cookies.remove('globals');
             $http.defaults.headers.common.Authorization = 'Basic';
+
             $window.localStorage.removeItem('mdbUserId');
             $window.localStorage.removeItem('mdbRole');
             $window.localStorage.removeItem('mdbAuthData');
             $window.localStorage.removeItem('mdbUsername');
+
+            $rootScope.loggedUser='';
         }
     }
 

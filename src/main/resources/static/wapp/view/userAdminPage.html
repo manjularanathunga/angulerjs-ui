@@ -39,8 +39,12 @@
                 <div class="col-sm-6">
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <label class="col-sm-4 fleft required" for="userRoles">userRoles</label>
-                            <input type="text" id="userRoles" name="userRoles" ng-model="usr.userRoles" class="form-control col-sm-8 fleft" ng-disabled="component_is_disabled" required >
+                            <label class="col-sm-4 fleft required">Role</label>
+                            <select ng-model="usr.role" class="form-control col-sm-8 fleft" ng-disabled="component_is_disabled" required>
+                                <option value="">
+                                <option value="ADMIN">ADMIN
+                                <option value="USER">USER
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -75,7 +79,7 @@
                 <div class="col-sm-6">
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <label class="col-sm-4 fleft required" for="userPFNumber">userPFNumber</label>
+                            <label class="col-sm-4 fleft required" for="userPFNumber">PF #</label>
                             <input type="text" id="userPFNumber" name="userPFNumber" ng-model="usr.userPFNumber" class="form-control col-sm-8 fleft" ng-disabled="component_is_disabled" required>
                         </div>
                     </div>

@@ -9,7 +9,7 @@ var app = angular.module('app',['ngRoute', 'ngCookies'])
 
         $rootScope.presentDate = new Date();
         $rootScope.mainTitle = "Medical Data Analysis System";
-        $rootScope.loggedUser = $rootScope.mdbloggedUser;
+        $rootScope.loggedUser = $window.localStorage.getItem('mdbloggedUser');
         $rootScope.pageTitle = "Login";
 
         $rootScope.globals = $cookies.getObject('globals') || {};
@@ -22,7 +22,7 @@ var app = angular.module('app',['ngRoute', 'ngCookies'])
             var restrictedPage = $.inArray($location.path(), ['/login', '/register']) === -1;
             var loggedIn = $rootScope.globals.currentUser;
             if (restrictedPage && !loggedIn) {
-                // $location.path('/login');
+                $location.path('/login');
             }
         });
 

@@ -16,13 +16,16 @@ app.controller('PatientController', function($scope,$rootScope, $http, $location
     $scope.showUI = function (itm, opType) {
         $scope.actionType = opType;
         if('add' === $scope.actionType){
+            $scope.heading='Add Patient Details';
             $scope.itemDisabled=false;
             $scope.patient={};
         }else if('edit' === $scope.actionType){
+            $scope.heading='Edit Patient Details';
             $scope.itemDisabled=false;
             $scope.patient=itm;
             $scope.patient.dateOfBirth=new Date(itm.dateOfBirth);
         }else if('delete' === $scope.actionType){
+            $scope.heading='Delete Patient Details';
             $scope.itemDisabled=true;
             $scope.patient=itm;
         }
@@ -31,6 +34,7 @@ app.controller('PatientController', function($scope,$rootScope, $http, $location
 
     $scope.saveModal = function () {
         $scope.patient.lastModified =new Date();
+        $scope.patient.actionBy=loggedUser;
 
         if('add' === $scope.actionType){
             $scope.patient.dateCreated =new Date();

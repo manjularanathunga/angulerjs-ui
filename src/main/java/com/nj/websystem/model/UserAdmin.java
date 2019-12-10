@@ -20,7 +20,7 @@ public class UserAdmin {
     private String middleName;
     private String lastName;
     private String passWord;
-    private Long userRoles;
+    private UserRoles role;
     private String userEmail;
     private String userPFNumber;
     private String telNumber;
@@ -76,6 +76,14 @@ public class UserAdmin {
 
     public void setPassWord(String passWord) {
         this.passWord = passWord;
+    }
+
+    public UserRoles getRole() {
+        return role;
+    }
+
+    public void setRole(UserRoles role) {
+        this.role = role;
     }
 
     public String getUserEmail() {
@@ -140,13 +148,5 @@ public class UserAdmin {
 
     public void setLastDateModified(Date lastDateModified) {
         this.lastDateModified = lastDateModified;
-    }
-
-    public Long getUserRoles() {
-        return userRoles;
-    }
-
-    public void setUserRoles(Long userRoles) {
-        this.userRoles = userRoles;
     }
 }

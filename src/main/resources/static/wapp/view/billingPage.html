@@ -1,0 +1,163 @@
+<div class="container pt-0">
+    <div class="container rounded" style="border:1px solid blanchedalmond">
+        <div class="row pt-3">
+            <div class="col-8">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label class="font-size-sm">ID Patient</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <input ng-disabled="itemDisabled" ng-model="patient.patientId" style="width: 150px;"
+                               type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label class="font-size-sm">Date</label>
+                    </div>
+                    <div class="col-sm-9">
+                        {{billing.dateCreated | date:'medium'}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-8">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label class="font-size-sm">NIC #</label>
+                    </div>
+                    <div class="col-sm-6 form-control">
+                        <md-autocomplete md-item-text="item.display" md-items="item in ptestList" md-no-cache="true"
+                                         md-search-text="searchText" md-selected-item="selectedItem"
+                                         ng-disabled="itemDisabled" ng-model="patient.patientId"
+                                         style="width: 200px;">
+                            <span>{{ item.display }}</span>
+                        </md-autocomplete>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-8">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label class="font-size-sm">Patient</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <input ng-disabled="itemDisabled" ng-model="patient.patientId" style="width: 500px;"
+                               type="text">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-8">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label class="font-size-sm">Orther</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <textarea ng-disabled="itemDisabled" ng-model="patient.patientId" style="width: 350px;"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label class="font-size-sm">DOB</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <input ng-disabled="itemDisabled" ng-model="patient.patientId" type="date">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row pb-3">
+            <div class="col-8">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label class="font-size-sm">Sex</label>
+                    </div>
+                    <div class="col-sm-6">
+                        Male <input name="gender" ng-model="patient.gender" type="radio" value="MALE"/>
+                        Female <input name="gender" ng-model="patient.gender" type="radio" value="FEMALE"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label class="font-size-sm">SeenBy</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <input ng-disabled="itemDisabled" ng-model="patient.patientId" type="text">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <div class="container rounded" style="border:1px solid blanchedalmond">
+        <div class="row pt-3 pb-3">
+            <div class="col-4">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label class="font-size-sm">Type</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <select class="form-control" ng-change="onSelectAdminUser()"
+                                ng-model="selectuser" ng-options="user as user.userId for user in userAdminList" style="width: 150px;"></select>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label class="font-size-sm">Test</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <select class="form-control" ng-change="onSelectAdminUser()"
+                                ng-model="selectuser" ng-options="user as user.userId for user in userAdminList" style="width: 450px;"></select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="raw view pt-3">
+        <div class="wrapper table table-sm table-hover table-bordered" id="parent">
+            <table class="table" id="fixTable">
+                <thead class="bg-secondary text-light">
+                <tr>
+                    <th width="2%">#</th>
+                    <th width="5%">TEST #</th>
+                    <th width="35%">TETS</th>
+                    <th width="10%">Price</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-dblclick="showUI(itm,'edit')" ng-repeat="itm in ptestList | filter : searchKeyword">
+                    <td class="first-col">
+                        <div class="d-flex justify-content-center">
+                            <button class="btn btn-link btn-sm" data-toggle="tooltip" ng-click="showUI(itm,'delete')"
+                                    title="">
+                                <span class="text-danger"><i class="fa fa-times"></i></span>
+                            </button>
+                        </div>
+                    </td>
+                    <th>{{itm.testno}}</th>
+                    <th>{{itm.testName}}</th>
+                    <th>{{itm.price}}</th>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -54,5 +54,11 @@ var app = angular.module('app',['ngRoute', 'ngCookies'])
                 templateUrl : 'wapp/view/billingPage.html',
                 controller: 'BillingController'
             })
+            .when("/meditest", {
+                templateUrl : 'wapp/view/medicalTestPage.html',
+                controller: 'MedicalTestController'
+            })
+
+
 
     }]);

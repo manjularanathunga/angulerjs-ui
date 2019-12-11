@@ -1,6 +1,7 @@
 package com.nj.websystem.model;
 
 import com.nj.websystem.enums.Status;
+import com.nj.websystem.enums.TestType;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -14,10 +15,11 @@ public class MedicalTest {
     @SequenceGenerator(name = "TBL_MEDICAL_TEST_SEQ", sequenceName = "TBL_MEDICAL_TEST_SEQ", allocationSize=1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TBL_MEDICAL_TEST_SEQ")
     private Long id;
-    private Long testTypeId;
-    private Long testName;
+    private TestType type;
+    private String number;
+    private String name;
     @Column(precision=2, scale=0)
-    private Double testPrice;
+    private Double price;
     private String actionBy;
     private Date dateCreated;
     private Date lastModified;
@@ -31,28 +33,36 @@ public class MedicalTest {
         this.id = id;
     }
 
-    public Long getTestTypeId() {
-        return testTypeId;
+    public TestType getType() {
+        return type;
     }
 
-    public void setTestTypeId(Long testTypeId) {
-        this.testTypeId = testTypeId;
+    public void setType(TestType type) {
+        this.type = type;
     }
 
-    public Long getTestName() {
-        return testName;
+    public String getNumber() {
+        return number;
     }
 
-    public void setTestName(Long testName) {
-        this.testName = testName;
+    public void setNumber(String number) {
+        this.number = number;
     }
 
-    public Double getTestPrice() {
-        return testPrice;
+    public String getName() {
+        return name;
     }
 
-    public void setTestPrice(Double testPrice) {
-        this.testPrice = testPrice;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     public String getActionBy() {

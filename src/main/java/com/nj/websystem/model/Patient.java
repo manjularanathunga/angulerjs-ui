@@ -25,6 +25,7 @@ public class Patient {
     private Gender gender;
     private String seenBy;
     private String actionBy;
+    private String bht;
     private Date dateCreated;
     private Date lastModified;
     private Status status;
@@ -107,6 +108,14 @@ public class Patient {
 
     public void setActionBy(String actionBy) {
         this.actionBy = actionBy;
+    }
+
+    public String getBht() {
+        return bht;
+    }
+
+    public void setBht(String bht) {
+        this.bht = bht;
     }
 
     public Date getDateCreated() {

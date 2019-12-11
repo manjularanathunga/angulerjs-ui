@@ -30,6 +30,7 @@
     <script src="wapp/controller/DashboardController.js"></script>
     <script src="wapp/controller/LogoutController.js"></script>
     <script src="wapp/controller/BillingController.js"></script>
+    <script src="wapp/controller/MedicalTestController.js"></script>
 
     <script src="wapp/app-services/authentication.service.js"></script>
     <script src="wapp/app-services/user.service.js"></script>
@@ -61,7 +62,7 @@
                         <a href="#!patient">Patient</a>
                     </li>
                     <li>
-                        <a href="#!dashboard">Home 3</a>
+                        <a href="#!meditest">Test Setup</a>
                     </li>
                 </ul>
             </li>
@@ -69,10 +70,24 @@
                 <a href="#!billing">Billing</a>
             </li>
             <li>
-                <a href="#">Portfolio</a>
+                <a href="#dashboard">Portfolio</a>
+            </li>
+            <li class="active">
+                <a aria-expanded="false" class="dropdown-toggle" data-toggle="collapse" href="#homeSubmenu">Reports</a>
+                <ul class="collapse list-unstyled" id="homeSubmenu1">
+                    <li>
+                        <a href="#!useradmin">User Admin</a>
+                    </li>
+                    <li>
+                        <a href="#!patient">Patient</a>
+                    </li>
+                    <li>
+                        <a href="#!meditest">Test Setup</a>
+                    </li>
+                </ul>
             </li>
             <li>
-                <a href="#">Contact</a>
+                <a href="#dashboard">Contact</a>
             </li>
         </ul>
 

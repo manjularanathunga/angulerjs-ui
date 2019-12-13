@@ -10,7 +10,9 @@ import java.util.Optional;
 
 public interface PatientService extends JpaRepository<Patient, Long> {
 
-    List<Patient> findByPatientId(Long id);
+    List<Patient> findByPatientId(String patientId);
+
+    List<Patient> findByNicNumber(String nicNumber);
 
     // @Query("From MedicalTest ORDER BY patient_name ASC")
     List<Patient> findAll();

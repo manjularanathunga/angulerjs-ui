@@ -13,4 +13,8 @@ public interface PatientMedicalTestService extends JpaRepository<PatientMedicalT
     @Query("From PatientMedicalTest ORDER BY dateCreated DESC")
     List<PatientMedicalTest> findAll();
 
+    List<PatientMedicalTest> findAllByPatientIdAndType(String patientId,String type);
+
+
+
 }

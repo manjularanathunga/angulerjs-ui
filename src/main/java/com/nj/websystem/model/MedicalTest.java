@@ -16,7 +16,7 @@ public class MedicalTest {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TBL_MEDICAL_TEST_SEQ")
     private Long id;
     private TestType type;
-    private String number;
+    private String mtnumber;
     private String name;
     @Column(precision=2, scale=0)
     private Double price;
@@ -41,12 +41,12 @@ public class MedicalTest {
         this.type = type;
     }
 
-    public String getNumber() {
-        return number;
+    public String getMtnumber() {
+        return mtnumber;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    public void setMtnumber(String mtnumber) {
+        this.mtnumber = mtnumber;
     }
 
     public String getName() {

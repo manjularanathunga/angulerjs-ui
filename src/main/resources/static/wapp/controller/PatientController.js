@@ -1,5 +1,5 @@
 app.controller('PatientController', function ($scope, $rootScope, $http, $location, $window) {
-    $rootScope.pageTitle = "Patient";
+    $rootScope.pageTitle = "Patient Setup";
 
     $scope.patientList = [];
     $scope.patient = {};

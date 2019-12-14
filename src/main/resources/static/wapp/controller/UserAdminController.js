@@ -1,5 +1,5 @@
 app.controller('UserAdminController', function ($scope, $rootScope, $http, $location, $window, Pop, UserService) {
-    $rootScope.pageTitle = "useradmin";
+    $rootScope.pageTitle = "User Admin Setup";
 
     var loggedUser = '-';
     if ($rootScope.globals && $rootScope.globals.currentUser) {

@@ -1,5 +1,5 @@
 app.controller('MedicalTestController', function ($scope, $rootScope, $http, $location, $window) {
-    $rootScope.pageTitle = "Medical Test";
+    $rootScope.pageTitle = "Medical Test Setup";
 
     $scope.medicalTestList = [];
     $scope.mtest = {};

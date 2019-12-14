@@ -45,7 +45,7 @@ public class PatientController {
     }
 
     @RequestMapping(value = "/findByPatientId", method = RequestMethod.GET, headers = "Accept=application/json")
-    public HttpResponse findByPatientId(@RequestParam(value = "id", required = false) String patientId) {
+    public HttpResponse findByPatientId(@RequestParam(value = "patientId", required = true) String patientId) {
         logger.info("Request UserAdmin Id : {} " + patientId);
         HttpResponse res = new HttpResponse();
         List<Patient> patientList = services.findByPatientId(patientId);
@@ -56,6 +56,22 @@ public class PatientController {
         } else {
             res.setSuccess(false);
             res.setException("Invalid Patient !");
+        }
+        return res;
+    }
+
+    @RequestMapping(value = "/findByPatientListById", method = RequestMethod.GET, headers = "Accept=application/json")
+    public HttpResponse findByPatientListById(@RequestParam(value = "patientId", required = false) String patientId) {
+        logger.info("Request UserAdmin Id : {} " + patientId);
+        HttpResponse res = new HttpResponse();
+        List<Patient> patientList = services.findByPatientIdContaining(patientId);
+        if (patientList != null && !patientList.isEmpty()) {
+            res.setResponse(patientList);
+            res.setSuccess(true);
+            res.setRecCount(patientList.size());
+        } else {
+            res.setSuccess(false);
+            res.setException("Invalid Patient ID !");
         }
         return res;
     }

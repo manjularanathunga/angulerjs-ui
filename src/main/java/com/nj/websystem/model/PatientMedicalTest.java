@@ -22,6 +22,7 @@ public class PatientMedicalTest {
     private String name;
     @Column(precision = 2, scale = 0)
     private Double price;
+    private String seenBy;
     private String actionBy;
     private Date dateCreated;
     private Date lastModified;
@@ -113,5 +114,13 @@ public class PatientMedicalTest {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public String getSeenBy() {
+        return seenBy;
+    }
+
+    public void setSeenBy(String seenBy) {
+        this.seenBy = seenBy;
     }
 }

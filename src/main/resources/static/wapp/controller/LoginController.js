@@ -1,5 +1,5 @@
 app.controller('LoginController', function ($scope, $rootScope, $http, $location, $window, AuthenticationService, UserService, Pop) {
-    $rootScope.pageTitle = "Login";
+    $rootScope.pageTitle = "Medical Data Analysis System Login";
     $scope.dataLoading = false;
     $scope.auser = {};
     $scope.dataLoading = true;

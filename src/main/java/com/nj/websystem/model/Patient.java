@@ -22,8 +22,9 @@ public class Patient {
     private String patientName;
     private String telNumber;
     private Date dateOfBirth;
+    private String cityName;
+    private String districtName;
     private Gender gender;
-    private String seenBy;
     private String actionBy;
     private String bht;
     private Date dateCreated;
@@ -94,14 +95,6 @@ public class Patient {
         this.gender = gender;
     }
 
-    public String getSeenBy() {
-        return seenBy;
-    }
-
-    public void setSeenBy(String seenBy) {
-        this.seenBy = seenBy;
-    }
-
     public String getActionBy() {
         return actionBy;
     }
@@ -140,5 +133,21 @@ public class Patient {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
+    }
+
+    public String getDistrictName() {
+        return districtName;
+    }
+
+    public void setDistrictName(String districtName) {
+        this.districtName = districtName;
     }
 }

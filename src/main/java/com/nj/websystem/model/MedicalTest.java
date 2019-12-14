@@ -12,13 +12,13 @@ public class MedicalTest {
 
     @Id
     @Column(name = "id", nullable = false)
-    @SequenceGenerator(name = "TBL_MEDICAL_TEST_SEQ", sequenceName = "TBL_MEDICAL_TEST_SEQ", allocationSize=1)
+    @SequenceGenerator(name = "TBL_MEDICAL_TEST_SEQ", sequenceName = "TBL_MEDICAL_TEST_SEQ", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TBL_MEDICAL_TEST_SEQ")
     private Long id;
     private TestType testType;
     private String mtnumber;
     private String name;
-    @Column(precision=2, scale=0)
+    @Column(precision = 2, scale = 0)
     private Double price;
     private String actionBy;
     private Date dateCreated;

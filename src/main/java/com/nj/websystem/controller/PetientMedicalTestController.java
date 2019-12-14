@@ -1,11 +1,8 @@
 package com.nj.websystem.controller;
 
 import com.nj.websystem.enums.TestType;
-import com.nj.websystem.model.MedicalTest;
-import com.nj.websystem.model.Patient;
 import com.nj.websystem.model.PatientMedicalTest;
 import com.nj.websystem.rest.HttpResponse;
-import com.nj.websystem.service.MedicalTestService;
 import com.nj.websystem.service.PatientMedicalTestService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,10 +45,10 @@ public class PetientMedicalTestController {
     }
 
     @RequestMapping(value = "/findAllByPatientIdAndType", method = RequestMethod.GET, headers = "Accept=application/json")
-    public HttpResponse findAllByPatientIdAndType(@RequestParam(value = "patientid", required = false) String patientid,@RequestParam(value = "type", required = false) TestType type) {
-        logger.info("Request findAllByPatientIdAndType Id : {patientId, type} "+ patientid+ " | " + type);
+    public HttpResponse findAllByPatientIdAndType(@RequestParam(value = "patientid", required = false) String patientid, @RequestParam(value = "type", required = false) TestType type) {
+        logger.info("Request findAllByPatientIdAndType Id : {patientId, type} " + patientid + " | " + type);
         HttpResponse res = new HttpResponse();
-        List<PatientMedicalTest> patientList = services.findAllByPatientIdAndTestType(patientid,type);
+        List<PatientMedicalTest> patientList = services.findAllByPatientIdAndTestType(patientid, type);
         if (patientList != null && !patientList.isEmpty()) {
             res.setResponse(patientList);
             res.setSuccess(true);
@@ -81,14 +78,14 @@ public class PetientMedicalTestController {
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE, headers = "Accept=application/json")
-    public HttpResponse delete(@RequestParam(value = "id", required = false)Long id){
+    public HttpResponse delete(@RequestParam(value = "id", required = false) Long id) {
         logger.info("Delete OfficeRoom Name : {} " + id);
-        HttpResponse response =new HttpResponse();
+        HttpResponse response = new HttpResponse();
         PatientMedicalTest item = services.getOne(id);
-        if(item != null){
+        if (item != null) {
             services.delete(item);
             response.setSuccess(true);
-        }else{
+        } else {
             response.setSuccess(false);
             logger.info("Record has been already deleted : {} " + id);
             response.setException("Record has been already deleted");

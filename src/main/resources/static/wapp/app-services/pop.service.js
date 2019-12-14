@@ -18,7 +18,7 @@
 
         return service;
 
-        function msgWithButton(title, text,icon) {
+        function msgWithButton(title, text, icon) {
             swal({
                 title: title,
                 text: text,
@@ -35,9 +35,9 @@
             });
         }
 
-        function timeMsg(icon,title,msg,timer) {
+        function timeMsg(icon, title, msg, timer) {
             swal({
-                icon:icon,
+                icon: icon,
                 title: title,
                 text: msg,
                 buttons: false,
@@ -46,9 +46,9 @@
             });
         }
 
-        function msgWDelete(icon,msg,title,timer) {
+        function msgWDelete(icon, msg, title, timer) {
             swal({
-                icon:icon,
+                icon: icon,
                 title: msg,
                 text: title,
                 buttons: false,
@@ -59,7 +59,9 @@
 
         function setFocus(obj) {
             var element = $window.getElementById(obj);
-            if(element) {element.setFocus();}
+            if (element) {
+                element.setFocus();
+            }
 
         }
 

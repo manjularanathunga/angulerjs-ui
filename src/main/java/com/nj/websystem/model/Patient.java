@@ -12,11 +12,11 @@ public class Patient {
 
     @Id
     @Column(name = "id", nullable = false)
-    @SequenceGenerator(name = "TBL_PATIENT_SEQ", sequenceName = "TBL_PATIENT_SEQ", allocationSize=1)
+    @SequenceGenerator(name = "TBL_PATIENT_SEQ", sequenceName = "TBL_PATIENT_SEQ", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TBL_PATIENT_SEQ")
     private Long id;
     private String patientId;
-    @Column(unique=true)
+    @Column(unique = true)
     private String nicNumber;
     private String other;
     private String patientName;

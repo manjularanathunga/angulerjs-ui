@@ -1,6 +1,7 @@
 a {
     cursor: pointer;
 }
+
 /*
     DEMO STYLE
 */
@@ -95,6 +96,7 @@ a, a:hover, a:focus {
     font-size: 1.1em;
     display: block;
 }
+
 #sidebar ul li a:hover {
     color: #e5dfdf;
     background: #fff;
@@ -147,7 +149,6 @@ a.article, a.article:hover {
 }
 
 
-
 /* ---------------------------------------------------
     CONTENT STYLE
 ----------------------------------------------------- */
@@ -178,9 +179,11 @@ a.article, a.article:hover {
 #sidebarCollapse span:first-of-type {
     transform: rotate(45deg) translate(2px, 2px);
 }
+
 #sidebarCollapse span:nth-of-type(2) {
     opacity: 0;
 }
+
 #sidebarCollapse span:last-of-type {
     transform: rotate(-45deg) translate(1px, -1px);
 }
@@ -201,10 +204,12 @@ a.article, a.article:hover {
         margin-left: -250px;
         transform: rotateY(90deg);
     }
+
     #sidebar.active {
         margin-left: 0;
         transform: none;
     }
+
     #sidebarCollapse span:first-of-type,
     #sidebarCollapse span:nth-of-type(2),
     #sidebarCollapse span:last-of-type {
@@ -212,52 +217,56 @@ a.article, a.article:hover {
         opacity: 1;
         margin: 5px auto;
     }
+
     #sidebarCollapse.active span {
         margin: 0 auto;
     }
+
     #sidebarCollapse.active span:first-of-type {
         transform: rotate(45deg) translate(2px, 2px);
     }
+
     #sidebarCollapse.active span:nth-of-type(2) {
         opacity: 0;
     }
+
     #sidebarCollapse.active span:last-of-type {
         transform: rotate(-45deg) translate(1px, -1px);
     }
 
 }
 
-.fleft{
+.fleft {
     float: left
 }
 
 .required:after {
-    content:" *";
+    content: " *";
     color: red;
 }
 
-.red{
+.red {
     color: red;
 }
 
-.tleft{
+.tleft {
     text-align: left;
 }
 
-.tright{
+.tright {
     text-align: right;
 }
 
-.tcenter{
+.tcenter {
     text-align: center;
 }
 
-.delay{
+.delay {
     position: fixed;
     width: 100vw;
     height: 100vh;
     color: white;
-    background: rgba(0,0,0,0.2);
+    background: rgba(0, 0, 0, 0.2);
     z-index: 998;
     display: none;
 }
@@ -266,11 +275,11 @@ a.article, a.article:hover {
     position: inherit;
 }
 
-.tleft{
+.tleft {
     text-align: left;
 }
 
-.tright{
+.tright {
     text-align: right;
 }
 

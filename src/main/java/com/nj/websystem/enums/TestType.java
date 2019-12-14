@@ -1,5 +1,5 @@
 package com.nj.websystem.enums;
 
 public enum TestType {
-    P,S,H;
+    P, S, H
 }

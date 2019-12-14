@@ -6,14 +6,16 @@
                     <div class="col-sm-2">
                         <label class="font-size-sm">PID</label>
                     </div>
-                        <div class="col-sm-6">
-                            <input list="patientId" ng-change="findByPatientId()" ng-disabled="itemDisabled" ng-model="patient.patientId"
-                                   testType="text">
-                            <datalist id="patientId" ng-model="patient.patientId">
-                                <option ng-repeat="p in ptestList">{{p.patientId}}</option>
-                            </datalist>
-                            <span class="input-group-addon info"><span class="glyphicon glyphicon-asterisk red"></span></span>
-                        </div>
+                    <div class="col-sm-6">
+                        <input list="patientId" ng-change="findByPatientId()" ng-disabled="itemDisabled"
+                               ng-model="patient.patientId"
+                               testType="text">
+                        <datalist id="patientId" ng-model="patient.patientId">
+                            <option ng-repeat="p in ptestList">{{p.patientId}}</option>
+                        </datalist>
+                        <span class="input-group-addon info"><span
+                                class="glyphicon glyphicon-asterisk red"></span></span>
+                    </div>
                 </div>
             </div>
             <div class="col-4">
@@ -34,7 +36,8 @@
                         <label class="font-size-sm">NIC #</label>
                     </div>
                     <div class="col-sm-6">
-                        <input list="nicNumber" ng-change="findByNicNumber()" ng-disabled="itemDisabled" ng-model="patient.nicNumber"
+                        <input list="nicNumber" ng-change="findByNicNumber()" ng-disabled="itemDisabled"
+                               ng-model="patient.nicNumber"
                                testType="text">
                         <datalist id="nicNumber" ng-model="patient.nicNumber">
                             <option ng-repeat="p in ptestList">{{p.nicNumber}}</option>
@@ -98,10 +101,12 @@
                         <label class="font-size-sm">DOB</label>
                     </div>
                     <div class="col-sm-6">
-                        <input name="input" ng-disabled="itemDisabled" ng-model="patient.dateOfBirth" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" placeholder="YYYY-MM-DD"
+                        <input name="input" ng-disabled="itemDisabled" ng-model="patient.dateOfBirth"
+                               pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))"
+                               placeholder="YYYY-MM-DD"
                                required
-                               title="Enter a date in this format YYYY-MM-DD"
-                               testType="date"/>
+                               testType="date"
+                               title="Enter a date in this format YYYY-MM-DD"/>
                     </div>
                     <div class="col-sm-3">
                         <label class="font-size-sm">{{patient.currentAge}} Age</label>
@@ -128,7 +133,8 @@
                         <label class="font-size-sm">SeenBy</label>
                     </div>
                     <div class="col-sm-9">
-                        <input ng-disabled="itemDisabled" ng-model="patient.seenBy" style="width: 250px;" testType="text">
+                        <input ng-disabled="itemDisabled" ng-model="patient.seenBy" style="width: 250px;"
+                               testType="text">
                     </div>
                 </div>
             </div>
@@ -157,9 +163,6 @@
     </div>
 
 
-
-
-
     <div ng-if="showMediTest">
         <hr/>
         <div class="container rounded" style="border:1px solid blanchedalmond">
@@ -184,16 +187,20 @@
                             <label class="font-size-sm">Test</label>
                         </div>
 
-                         <div class="col-sm-10">
-                            <select class="form-control" ng-model="uicompo.selectedTest" ng-disabled="itemDisabled" style="width: 450px;">
-                                <option ng-repeat="item in mediTestList" value="{{item}}">{{item.name}} - Rs.{{item.price}}</option>
+                        <div class="col-sm-10">
+                            <select class="form-control" ng-disabled="itemDisabled" ng-model="uicompo.selectedTest"
+                                    style="width: 450px;">
+                                <option ng-repeat="item in mediTestList" value="{{item}}">{{item.name}} -
+                                    Rs.{{item.price}}
+                                </option>
                             </select>
                         </div>
                     </div>
                 </div>
                 <div class="col-2">
                     <div class="row">
-                        <button class="btn btn-danger" data-dismiss="modal" ng-click="addSelectedTest()" testType="button">
+                        <button class="btn btn-danger" data-dismiss="modal" ng-click="addSelectedTest()"
+                                testType="button">
                             <i
                                     class="text-warning fa fa-plus"></i> ADD
                         </button>&nbsp;

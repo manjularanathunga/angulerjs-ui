@@ -6,6 +6,7 @@
         .factory('FlashService', FlashService);
 
     FlashService.$inject = ['$rootScope'];
+
     function FlashService($rootScope) {
         var service = {};
 
@@ -37,7 +38,7 @@
         function Success(message, keepAfterLocationChange) {
             $rootScope.flash = {
                 message: message,
-                type: 'success', 
+                type: 'success',
                 keepAfterLocationChange: keepAfterLocationChange
             };
         }

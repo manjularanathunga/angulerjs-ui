@@ -87,9 +87,12 @@
                                     <label class="font-size-sm">Type</label>
                                 </div>
                                 <div class="col-sm-9">
-                                    P <input type="radio" name="type" ng-model="mtest.testType" value="P" ng-disabled="itemDisabled"/>&nbsp;&nbsp;
-                                    S <input type="radio" name="type" ng-model="mtest.testType" value="S" ng-disabled="itemDisabled"/>&nbsp;&nbsp;
-                                    H <input type="radio" name="type" ng-model="mtest.testType" value="H" ng-disabled="itemDisabled"/>&nbsp;&nbsp;
+                                    P <input name="type" ng-disabled="itemDisabled" ng-model="mtest.testType" type="radio"
+                                             value="P"/>&nbsp;&nbsp;
+                                    S <input name="type" ng-disabled="itemDisabled" ng-model="mtest.testType" type="radio"
+                                             value="S"/>&nbsp;&nbsp;
+                                    H <input name="type" ng-disabled="itemDisabled" ng-model="mtest.testType" type="radio"
+                                             value="H"/>&nbsp;&nbsp;
                                 </div>
                             </div>
                         </div>
@@ -101,7 +104,8 @@
                                     <label class="font-size-sm">Test #</label>
                                 </div>
                                 <div class="col-sm-9">
-                                    <input ng-disabled="itemDisabled" ng-model="mtest.mtnumber" type="text" style="width: 150px;">
+                                    <input ng-disabled="itemDisabled" ng-model="mtest.mtnumber" style="width: 150px;"
+                                           type="text">
                                 </div>
                             </div>
                         </div>
@@ -113,7 +117,8 @@
                                     <label class="font-size-sm">Test Name</label>
                                 </div>
                                 <div class="col-sm-9">
-                                    <input ng-disabled="itemDisabled" ng-model="mtest.name" type="text" style="width: 350px;">
+                                    <input ng-disabled="itemDisabled" ng-model="mtest.name" style="width: 350px;"
+                                           type="text">
                                 </div>
                             </div>
                         </div>
@@ -125,18 +130,21 @@
                                     <label class="font-size-sm">Price</label>
                                 </div>
                                 <div class="col-sm-9">
-                                    <input ng-disabled="itemDisabled" ng-model="mtest.price" step=".01" type="mtnumber" forma style="width: 75px;">
+                                    <input forma ng-disabled="itemDisabled" ng-model="mtest.price" step=".01"
+                                           style="width: 75px;" type="mtnumber">
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                    <div class="col-sm-12">
-                        <div class="d-flex justify-content-sm-end">
-                            <button class="btn btn-primary" data-dismiss="modal" ng-click="saveModal()" type="button">Save</button>&nbsp;
-                            <button class="btn btn-danger" data-dismiss="modal" type="button">Close</button>
+                        <div class="col-sm-12">
+                            <div class="d-flex justify-content-sm-end">
+                                <button class="btn btn-primary" data-dismiss="modal" ng-click="saveModal()"
+                                        type="button">Save
+                                </button>&nbsp;
+                                <button class="btn btn-danger" data-dismiss="modal" type="button">Close</button>
+                            </div>
                         </div>
-                    </div>
                     </div>
                 </div>
             </form>

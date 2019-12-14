@@ -1,7 +1,6 @@
 package com.nj.websystem.controller;
 
 import com.nj.websystem.model.Patient;
-import com.nj.websystem.model.UserAdmin;
 import com.nj.websystem.rest.HttpResponse;
 import com.nj.websystem.service.PatientService;
 import org.slf4j.Logger;
@@ -9,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 

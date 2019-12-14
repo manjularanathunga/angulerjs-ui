@@ -1,52 +1,53 @@
-.view{
+.view {
     margin: auto;
     width: auto;
 }
 
-.wrapper{
+.wrapper {
     position: relative;
     overflow: auto;
     border: 1px solid black;
     white-space: nowrap;
 }
 
-.sticky-col{
+.sticky-col {
     position: sticky;
     position: -webkit-sticky;
     /*    background-color: white;*/
 }
 
-.first-col{
+.first-col {
     width: 20px;
     left: 0px;
 }
 
-.second-col{
+.second-col {
     width: 20px;
     left: 20px;
     background-color: white;
 }
 
-.third-col{
+.third-col {
     width: 20px;
     left: 40px;
     background-color: white;
 }
 
-.fourth-col{
+.fourth-col {
     width: 200px;
     left: 60px;
     background-color: white;
 }
 
-#parent{
+#parent {
     height: 300px;
 }
 
-#fixTable{
+#fixTable {
     width: 1300px !important;
 }
 
-.tr-color{
-    background-color: #6c757d; !important;
+.tr-color {
+    background-color: #6c757d;
+!important;
 }

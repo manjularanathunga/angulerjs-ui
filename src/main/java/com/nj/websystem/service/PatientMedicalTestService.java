@@ -17,5 +17,4 @@ public interface PatientMedicalTestService extends JpaRepository<PatientMedicalT
     List<PatientMedicalTest> findAllByPatientIdAndTestType(String patientId, TestType testType);
 
 
-
 }

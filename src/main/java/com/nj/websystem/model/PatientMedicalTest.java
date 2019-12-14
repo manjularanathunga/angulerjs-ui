@@ -12,7 +12,7 @@ public class PatientMedicalTest {
 
     @Id
     @Column(name = "id", nullable = false)
-    @SequenceGenerator(name = "TBL_PATIENT_MEDICAL_TEST_SEQ", sequenceName = "TBL_PATIENT_MEDICAL_TEST_SEQ", allocationSize=1)
+    @SequenceGenerator(name = "TBL_PATIENT_MEDICAL_TEST_SEQ", sequenceName = "TBL_PATIENT_MEDICAL_TEST_SEQ", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TBL_PATIENT_MEDICAL_TEST_SEQ")
     private Long id;
     private String testNumber;
@@ -20,7 +20,7 @@ public class PatientMedicalTest {
     private TestType testType;
     private String mtnumber;
     private String name;
-    @Column(precision=2, scale=0)
+    @Column(precision = 2, scale = 0)
     private Double price;
     private String actionBy;
     private Date dateCreated;

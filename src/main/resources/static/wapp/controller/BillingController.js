@@ -39,11 +39,20 @@ app.controller('BillingController', function ($scope, $rootScope, $http, $locati
 
         loadPatientList();
 
-/*        $scope.ptestList.push({"id":1,"patientId":"abcd","nicNumber":"1231","other":"abcd","patientName":"abcd","telNumber":"aabcd","dateOfBirth":"1970-01-01T00:00:00.000+0000","gender":"MALE","seenBy":"a","actionBy":"-","bht":null,
-                "dateCreated":"2019-12-12T12:41:44.734+0000","lastModified":"2019-12-12T13:47:42.748+0000","status":"ACTIVE"});*/
+        /*        $scope.ptestList.push({"id":1,"patientId":"abcd","nicNumber":"1231","other":"abcd","patientName":"abcd","telNumber":"aabcd","dateOfBirth":"1970-01-01T00:00:00.000+0000","gender":"MALE","seenBy":"a","actionBy":"-","bht":null,
+                        "dateCreated":"2019-12-12T12:41:44.734+0000","lastModified":"2019-12-12T13:47:42.748+0000","status":"ACTIVE"});*/
 
-        $scope.mediTestList.push({"id":6,"testType":"P","mtnumber":"df","name":"fdf","price":100.0,"actionBy":"-",
-            "dateCreated":"2019-12-13T18:10:11.064+0000","lastModified":"2019-12-13T18:11:38.176+0000","status":"ACTIVE"});
+        $scope.mediTestList.push({
+            "id": 6,
+            "testType": "P",
+            "mtnumber": "df",
+            "name": "fdf",
+            "price": 100.0,
+            "actionBy": "-",
+            "dateCreated": "2019-12-13T18:10:11.064+0000",
+            "lastModified": "2019-12-13T18:11:38.176+0000",
+            "status": "ACTIVE"
+        });
     };
 
 
@@ -55,7 +64,7 @@ app.controller('BillingController', function ($scope, $rootScope, $http, $locati
         }, function (response) {
             //Pop.msgWithButton('UPDATE','Fail User '+ item.fistName + ' Saving', 'error');
         });
-    }
+    };
 
     $scope.findByNicNumber = function () {
         var res = $http.get("patient/findByNicNumber?id=" + $scope.patient.nicNumber).then(function (response) {
@@ -65,7 +74,7 @@ app.controller('BillingController', function ($scope, $rootScope, $http, $locati
         }, function (response) {
             //Pop.msgWithButton('UPDATE','Fail User '+ item.fistName + ' Saving', 'error');
         });
-    }
+    };
 
 
     $scope.showUI = function (itm, opType) {
@@ -97,12 +106,12 @@ app.controller('BillingController', function ($scope, $rootScope, $http, $locati
             $scope.mediTestList = [];
             $scope.patientMediTestList = [];
         }
-    }
+    };
 
 
     $scope.saveUpdatePatient = function () {
 
-    }
+    };
 
     $scope.addSelectedTest = function () {
         var selected = $scope.uicompo.selectedTest;
@@ -136,18 +145,18 @@ app.controller('BillingController', function ($scope, $rootScope, $http, $locati
 
         $http.post('/patientmedicaltest/save', saveTest)
             .then(function (resp) {
-            if (resp.data.success) {
-                Pop.timeMsg('success', 'MEDICAL TEST ADDED ', '<<' + $scope.medicalTest.mtnumber + '>> has been added to patient <<' + b.patientId + '>>', 3000);
-                $scope.medicalTest = {};
-                $scope.mtest = {};
-                loadPatientMediTestList($scope.patient.patientId, $scope.uicompo.selectedTestType);
-            } else {
-                Pop.timeMsg('error', 'MEDICAL TEST ADDED ', '<<' + $scope.medicalTest.mtnumber + '>> has not added to <<' + b.patientId + '>>', 3000);
-                $scope.mediTestList = [];
-            }
-        }, function (resp) {
-            Pop.msgWithButton('MEDICAL TEST ADDED',resp.data.error, 'error');
-        });
+                if (resp.data.success) {
+                    Pop.timeMsg('success', 'MEDICAL TEST ADDED ', '<<' + $scope.medicalTest.mtnumber + '>> has been added to patient <<' + b.patientId + '>>', 3000);
+                    $scope.medicalTest = {};
+                    $scope.mtest = {};
+                    loadPatientMediTestList($scope.patient.patientId, $scope.uicompo.selectedTestType);
+                } else {
+                    Pop.timeMsg('error', 'MEDICAL TEST ADDED ', '<<' + $scope.medicalTest.mtnumber + '>> has not added to <<' + b.patientId + '>>', 3000);
+                    $scope.mediTestList = [];
+                }
+            }, function (resp) {
+                Pop.msgWithButton('MEDICAL TEST ADDED', resp.data.error, 'error');
+            });
 
     };
 
@@ -158,7 +167,7 @@ app.controller('BillingController', function ($scope, $rootScope, $http, $locati
         $scope.patientMediTestList = [];
         $scope.mediTestList = [];
         $scope.showMediTest = false;
-    }
+    };
 
     var loadPatientList = function () {
         $http.get("patient/getList").then(function (response) {

@@ -162,8 +162,8 @@
                                     <label class="font-size-sm">Gender</label>
                                 </div>
                                 <div class="col-sm-8">
-                                    MALE <input type="radio" name="gender" ng-model="patient.gender" value="MALE"/>
-                                    FEMALE <input type="radio" name="gender" ng-model="patient.gender" value="FEMALE"/>
+                                    MALE <input name="gender" ng-model="patient.gender" type="radio" value="MALE"/>
+                                    FEMALE <input name="gender" ng-model="patient.gender" type="radio" value="FEMALE"/>
                                 </div>
                             </div>
                         </div>
@@ -182,7 +182,9 @@
 
                     <div class="col-sm-12">
                         <div class="d-flex justify-content-sm-end">
-                            <button class="btn btn-primary" data-dismiss="modal" ng-click="saveModal()" type="button">Save</button>&nbsp;
+                            <button class="btn btn-primary" data-dismiss="modal" ng-click="saveModal()" type="button">
+                                Save
+                            </button>&nbsp;
                             <button class="btn btn-danger" data-dismiss="modal" type="button">Close</button>
                         </div>
                     </div>

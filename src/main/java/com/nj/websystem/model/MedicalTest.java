@@ -15,7 +15,7 @@ public class MedicalTest {
     @SequenceGenerator(name = "TBL_MEDICAL_TEST_SEQ", sequenceName = "TBL_MEDICAL_TEST_SEQ", allocationSize=1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TBL_MEDICAL_TEST_SEQ")
     private Long id;
-    private TestType type;
+    private TestType testType;
     private String mtnumber;
     private String name;
     @Column(precision=2, scale=0)
@@ -33,12 +33,12 @@ public class MedicalTest {
         this.id = id;
     }
 
-    public TestType getType() {
-        return type;
+    public TestType getTestType() {
+        return testType;
     }
 
-    public void setType(TestType type) {
-        this.type = type;
+    public void setTestType(TestType testType) {
+        this.testType = testType;
     }
 
     public String getMtnumber() {

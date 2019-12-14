@@ -106,14 +106,14 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding-top: 2px; padding-bottom: 2px;">
             <div class="container-fluid">
 
-                <button class="navbar-btn" id="sidebarCollapse" type="button">
+                <button class="navbar-btn" id="sidebarCollapse" testType="button">
                     <span></span>
                     <span></span>
                     <span></span>
                 </button>
                 <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
                         class="btn btn-dark d-inline-block d-lg-none ml-auto" data-target="#navbarSupportedContent"
-                        data-toggle="collapse" type="button">
+                        data-toggle="collapse" testType="button">
                     <i class="fas fa-align-justify"></i>
                 </button>
 
@@ -145,7 +145,7 @@
     </div>
 </div>
 </div>
-<script type="text/javascript">
+<script testType="text/javascript">
     $(document).ready(function () {
         $('#sidebarCollapse').on('click', function () {
             $('#sidebar').toggleClass('active');

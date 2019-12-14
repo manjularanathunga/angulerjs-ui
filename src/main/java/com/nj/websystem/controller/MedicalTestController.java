@@ -1,5 +1,6 @@
 package com.nj.websystem.controller;
 
+import com.nj.websystem.enums.TestType;
 import com.nj.websystem.model.MedicalTest;
 import com.nj.websystem.model.Patient;
 import com.nj.websystem.rest.HttpResponse;
@@ -29,13 +30,13 @@ public class MedicalTestController {
         return list;
     }
 
-    @RequestMapping(value = "/getById", method = RequestMethod.GET, headers = "Accept=application/json")
-    public HttpResponse getById(@RequestParam(value = "id", required = false) long id) {
-        logger.info("Request MedicalTest Id : {} " + id);
+    @RequestMapping(value = "/findAllByType", method = RequestMethod.GET, headers = "Accept=application/json")
+    public HttpResponse findAllByType(@RequestParam(value = "testType", required = false) TestType testType) {
+        logger.info("Request MedicalTest type : {} ", testType);
         HttpResponse res = new HttpResponse();
-        List<MedicalTest> patientList = services.findAll();
+        List<MedicalTest> patientList = services.findAllByTestType(testType);
         if (patientList != null && !patientList.isEmpty()) {
-            res.setResponse(patientList.get(0));
+            res.setResponse(patientList);
             res.setSuccess(true);
             res.setRecCount(1);
         } else {

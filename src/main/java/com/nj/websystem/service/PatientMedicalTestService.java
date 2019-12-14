@@ -1,5 +1,6 @@
 package com.nj.websystem.service;
 
+import com.nj.websystem.enums.TestType;
 import com.nj.websystem.model.PatientMedicalTest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -13,7 +14,7 @@ public interface PatientMedicalTestService extends JpaRepository<PatientMedicalT
     @Query("From PatientMedicalTest ORDER BY dateCreated DESC")
     List<PatientMedicalTest> findAll();
 
-    List<PatientMedicalTest> findAllByPatientIdAndType(String patientId,String type);
+    List<PatientMedicalTest> findAllByPatientIdAndTestType(String patientId, TestType testType);
 
 
 

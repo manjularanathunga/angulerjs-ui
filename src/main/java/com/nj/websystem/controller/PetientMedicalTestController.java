@@ -1,5 +1,6 @@
 package com.nj.websystem.controller;
 
+import com.nj.websystem.enums.TestType;
 import com.nj.websystem.model.MedicalTest;
 import com.nj.websystem.model.Patient;
 import com.nj.websystem.model.PatientMedicalTest;
@@ -36,7 +37,7 @@ public class PetientMedicalTestController {
         HttpResponse res = new HttpResponse();
         List<PatientMedicalTest> patientList = services.findAll();
         if (patientList != null && !patientList.isEmpty()) {
-            res.setResponse(patientList.get(0));
+            res.setResponse(patientList);
             res.setSuccess(true);
             res.setRecCount(1);
         } else {
@@ -47,12 +48,12 @@ public class PetientMedicalTestController {
     }
 
     @RequestMapping(value = "/findAllByPatientIdAndType", method = RequestMethod.GET, headers = "Accept=application/json")
-    public HttpResponse findAllByPatientIdAndType(@RequestParam(value = "patientId", required = false) String patientId,@RequestParam(value = "type", required = false) String type) {
-        logger.info("Request UserAdmin Id : {} " + patientId);
+    public HttpResponse findAllByPatientIdAndType(@RequestParam(value = "patientid", required = false) String patientid,@RequestParam(value = "type", required = false) TestType type) {
+        logger.info("Request findAllByPatientIdAndType Id : {patientId, type} "+ patientid+ " | " + type);
         HttpResponse res = new HttpResponse();
-        List<PatientMedicalTest> patientList = services.findAllByPatientIdAndType(patientId,type);
+        List<PatientMedicalTest> patientList = services.findAllByPatientIdAndTestType(patientid,type);
         if (patientList != null && !patientList.isEmpty()) {
-            res.setResponse(patientList.get(0));
+            res.setResponse(patientList);
             res.setSuccess(true);
             res.setRecCount(1);
         } else {
@@ -64,9 +65,19 @@ public class PetientMedicalTestController {
 
 
     @RequestMapping(value = "/save", method = RequestMethod.POST, headers = "Accept=application/json")
-    public PatientMedicalTest save(@RequestBody PatientMedicalTest obj) {
-        logger.info("TestName : " + obj.getName());
-        return services.save(obj);
+    public HttpResponse save(@RequestBody PatientMedicalTest obj) {
+        logger.info("Saving TestName : " + obj.getName());
+        PatientMedicalTest savedMedicalTest = services.save(obj);
+        HttpResponse res = new HttpResponse();
+        if (savedMedicalTest != null) {
+            //res.setResponse();
+            res.setSuccess(true);
+            res.setRecCount(1);
+        } else {
+            res.setSuccess(false);
+            res.setException("Fail to save Medical Test : " + obj.getTestNumber());
+        }
+        return res;
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE, headers = "Accept=application/json")

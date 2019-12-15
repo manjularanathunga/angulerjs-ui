@@ -30,6 +30,21 @@ public class UserAdmin {
     private String actionBy;
     private Date lastDateModified;
 
+    public UserAdmin() {
+    }
+
+    public UserAdmin(Long id,String userId, String fistName, String lastName, String passWord, UserRoles role, String userPFNumber, Date dateCreated, String actionBy) {
+        this.id = id;
+        this.userId = userId;
+        this.fistName = fistName;
+        this.lastName = lastName;
+        this.passWord = passWord;
+        this.role = role;
+        this.userPFNumber = userPFNumber;
+        this.dateCreated = dateCreated;
+        this.actionBy = actionBy;
+    }
+
     public Long getId() {
         return id;
     }

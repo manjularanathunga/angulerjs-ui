@@ -38,7 +38,7 @@ public class WebSystemApplication {
         adminUsers.add(new UserAdmin(2L,"manjula", "Manjula", "Ranathunga", "manjula@123", UserRoles.ADMIN, "admin", new Date(), "system"));
         adminUsers.add(new UserAdmin(3L,"nuwan", "Nuwan", "Jayasooriya", "nuwan@123", UserRoles.ADMIN, "admin", new Date(), "system"));
         adminUsers.add(new UserAdmin(4L,"test", "Test", "User", "test@123", UserRoles.USER, "admin", new Date(), "system"));
-       services.saveAll(adminUsers);
+       //services.saveAll(adminUsers);
         return args -> {
             logger.info("Started ...");
         };

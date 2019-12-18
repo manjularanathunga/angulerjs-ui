@@ -18,7 +18,7 @@ public class PatientMedicalTest {
     private String testNumber;
     private String patientId;
     private TestType testType;
-    private String mtnumber;
+    private String billingNumber;
     private String name;
     @Column(precision = 2, scale = 0)
     private Double price;
@@ -60,12 +60,12 @@ public class PatientMedicalTest {
         this.testType = testType;
     }
 
-    public String getMtnumber() {
-        return mtnumber;
+    public String getBillingNumber() {
+        return billingNumber;
     }
 
-    public void setMtnumber(String mtnumber) {
-        this.mtnumber = mtnumber;
+    public void setBillingNumber(String billingNumber) {
+        this.billingNumber = billingNumber;
     }
 
     public String getName() {

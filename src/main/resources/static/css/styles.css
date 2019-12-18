@@ -275,6 +275,10 @@ a.article, a.article:hover {
     position: inherit;
 }
 
+.modal-wrapper{
+    background: transparent !important;
+}
+
 .tleft {
     text-align: left;
 }

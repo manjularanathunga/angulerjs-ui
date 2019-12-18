@@ -30,7 +30,7 @@
                 <tr>
                     <th class="first-col" width="2%">&nbsp;</th>
                     <th width="7%">TEST #</th>
-                    <th width="7%">#</th>
+                    <th width="15%">#</th>
                     <th width="45%">TEST</th>
                     <th width="10%">Price</th>
                     <th>ACTIONBY</th>
@@ -49,14 +49,14 @@
                             </button>
                         </div>
                     </td>
-                    <th>{{itm.testType}}</th>
-                    <th>{{itm.mtnumber}}</th>
-                    <th>{{itm.name}}</th>
-                    <th>{{itm.price}}</th>
-                    <th>{{itm.actionBy}}</th>
-                    <th>{{itm.dateCreated | date:'medium'}}</th>
-                    <th>{{itm.lastModified | date:'medium'}}</th>
-                    <th>{{itm.status}}</th>
+                    <td>{{itm.testType}}</td>
+                    <td>{{itm.testNumber}}</td>
+                    <td>{{itm.name}}</td>
+                    <td>{{itm.price}}</td>
+                    <td>{{itm.actionBy}}</td>
+                    <td>{{itm.dateCreated | date:'medium'}}</td>
+                    <td>{{itm.lastModified | date:'medium'}}</td>
+                    <td>{{itm.status}}</td>
                 </tr>
                 </tbody>
             </table>
@@ -96,20 +96,20 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row pt-3">
                         <div class="col-12">
                             <div class="row">
                                 <div class="col-sm-3">
                                     <label class="font-size-sm">Test #</label>
                                 </div>
                                 <div class="col-sm-9">
-                                    <input ng-disabled="itemDisabled" ng-model="mtest.mtnumber" style="width: 150px;"
+                                    <input ng-disabled="itemDisabled" ng-model="mtest.testNumber" style="width: 150px;"
                                            type="text">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row pt-3">
                         <div class="col-12">
                             <div class="row">
                                 <div class="col-sm-3">
@@ -122,7 +122,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row pt-3">
                         <div class="col-12">
                             <div class="row">
                                 <div class="col-sm-3">
@@ -130,12 +130,12 @@
                                 </div>
                                 <div class="col-sm-9">
                                     <input forma ng-disabled="itemDisabled" ng-model="mtest.price" step=".01"
-                                           style="width: 75px;" type="mtnumber">
+                                           style="width: 75px;" type="billingNumber">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row pt-3 pb-3">
                         <div class="col-sm-12">
                             <div class="d-flex justify-content-sm-end">
                                 <button class="btn btn-primary" data-dismiss="modal" ng-click="saveModal()"

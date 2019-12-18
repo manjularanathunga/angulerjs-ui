@@ -116,15 +116,20 @@ public class PetientMedicalTestController {
         }
         return response;
     }
+*/
+    @RequestMapping(value = "/saveList", method = RequestMethod.POST, headers = "Accept=application/json")
+    public HttpResponse bulkInsert(@RequestBody List<PatientMedicalTest> items) {
+        logger.info("PatientMedicalTest count : {} " + items.size());
+        HttpResponse response = new HttpResponse();
+        List result = services.saveAll(items);
+        if (result != null && result.size() > 0) {
+            response.setSuccess(true);
+        } else {
+            response.setSuccess(false);
+            response.setException("Record not saved");
+        }
+        return response;
 
-    @RequestMapping(value = "/bulkInsert", method = RequestMethod.POST, headers = "Accept=application/json")
-    public List<UserAdmin> bulkInsert(@RequestBody List<UserAdmin> items) {
-        logger.info("UserAdmin countt : {} " + items.size());
-        items.forEach(item -> {
-            item.setId(null);
-            item.setDateCreated(new Date());
-        });
-        return services.saveAll(items);
-    }*/
+    }
 
 }

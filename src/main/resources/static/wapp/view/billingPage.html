@@ -1,36 +1,67 @@
 <div class="container pt-0">
-
     <div class="row pb-3">
-        <div class="col-sm-8">
-
+        <div class="col-sm-6 text-primary">
+            <h5 ng-if="showMediTest">Patient Registration # {{patient.patientId}}</h5>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <div class="row">
-                <div class="col-sm-6">
-                    <div class="row">&nbsp;
-                        <button class="btn btn-primary" data-dismiss="modal" ng-click="saveUpdatePatient()"
-                                testType="button"><i
-                                class="text-warning fa fa-plus"></i> ADD
-                        </button>&nbsp;
+                <div class="col-sm-12">
+                    <div class="row d-flex flex-row-reverse">
+                        <button class="btn btn-danger" ng-click="clearCurrentPatient()" ng-show="btnReset"
+                                style="width: 45px;"
+                                type="button"><i
+                                aria-hidden="true" class="fa fa fa-reply"></i></button>
+                        <span class="pl-sm-1" ng-show="btnReset"></span>
 
-                        <button class="btn btn-warning" data-dismiss="modal" ng-click="saveUpdatePatient()"
-                                testType="button"><i
-                                class="text-warning fa fa-plus"></i>Search
-                        </button>&nbsp;
+                        <button class="btn btn-danger pr-sm-1" ng-click="delete();" ng-show="btnDelShow"
+                                style="width: 45px;"
+                                type="button"><i
+                                aria-hidden="true" class="fa fa-trash"></i></button>
+                        <span class="pl-sm-1" ng-show="btnDelShow"></span>
+
+                        <button class="btn btn-info pr-sm-1" ng-click="edit();" ng-show="btnEditShow"
+                                style="width: 45px;"
+                                type="button"><i
+                                aria-hidden="true" class="fa fa-wrench"></i></button>
+                        <span class="pl-sm-1" ng-show="btnEditShow"></span>
+
+                        <button class="btn btn-primary pr-sm-1" ng-click="addNewPatient();" ng-show="btnAddShow"
+                                style="width: 45px;"
+                                type="button"><i
+                                aria-hidden="true" class="fa fa-plus-circle"></i></button>
+                        <span class="pl-sm-1" ng-show="btnAddShow"></span>
+
+                        <button class="btn btn-warning pr-sm-1" ng-click="showSearch();" ng-show="btnSearch"
+                                style="width: 45px;" type="button">
+                            <i aria-hidden="true" class="fa fa-search"></i></button>
+                        <span class="pl-sm-1" ng-show="btnSearch"></span>
                     </div>
                 </div>
-                <div class="col-sm-6">
-                    <div class="row">
-                        <button class="btn btn-success" data-dismiss="modal" ng-click="saveUpdatePatient()"
-                                testType="button"><i
-                                class="text-warning fa fa-plus"></i> Save
-                        </button>&nbsp;
-                        <button class="btn btn-danger" data-dismiss="modal" ng-click="clearCurrentPatient()"
-                                testType="button"><i
-                                class="text-warning fas fa-eraser"></i>Clear
-                        </button>&nbsp;
-                    </div>
-                </div>
+                <!--                <div class="col-sm-6">
+                                    <div class="row">&nbsp;
+                                        <button class="btn btn-primary" data-dismiss="modal" ng-click="saveUpdatePatient()"
+                                                type="button"><i
+                                                class="text-warning fa fa-plus"></i> ADD
+                                        </button>&nbsp;
+
+                                        <button class="btn btn-warning" data-dismiss="modal" ng-click="saveUpdatePatient()"
+                                                type="button"><i
+                                                class="text-warning fa fa-plus"></i>Search
+                                        </button>&nbsp;
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="row">
+                                        <button class="btn btn-success" data-dismiss="modal" ng-click="saveUpdatePatient()"
+                                                type="button"><i
+                                                class="text-warning fa fa-plus"></i> Save
+                                        </button>&nbsp;
+                                        <button class="btn btn-danger" data-dismiss="modal" ng-click="clearCurrentPatient()"
+                                                type="button"><i
+                                                class="text-warning fas fa-eraser"></i>Clear
+                                        </button>&nbsp;
+                                    </div>
+                                </div>-->
             </div>
         </div>
     </div>
@@ -73,7 +104,7 @@
                     </div>
                     <div class="col-sm-6">
                         <input ng-disabled="uicompo.itemDisabled" ng-model="patient.patientName" style="width: 350px;"
-                               testType="text">
+                               type="text">
                     </div>
                 </div>
             </div>
@@ -81,7 +112,7 @@
             <div class="col-6">
                 <div class="row">
                     <div class="col-sm-2">
-                        <label class="font-size-sm">City</label>
+                        <label class="font-size-sm">District</label>
                     </div>
                     <div class="col-sm-6">
                         <select class="form-control" ng-disabled="uicompo.itemDisabled"
@@ -100,8 +131,9 @@
                         <label class="font-size-sm">Address</label>
                     </div>
                     <div class="col-sm-4">
-                        <input ng-disabled="uicompo.itemDisabled" ng-model="patient.patientName" style="width: 400px;"
-                               testType="text">
+                        <input ng-disabled="uicompo.itemDisabled" ng-model="patient.patientAddress"
+                               style="width: 400px;"
+                               type="text">
                     </div>
                 </div>
             </div>
@@ -111,12 +143,9 @@
                         <label class="font-size-sm">NIC #</label>
                     </div>
                     <div class="col-sm-6">
-                        <input list="nicNumber" ng-model="patient.nicNumber"
+                        <input ng-disabled="uicompo.itemDisabled" ng-model="patient.nicNumber"
                                ng-select="findByNicNumber()"
-                               testType="text">
-                        <datalist id="nicNumber" ng-model="patient.nicNumber">
-                            <option ng-repeat="p in ptestList">{{p.nicNumber}}</option>
-                        </datalist>
+                               type="text">
                     </div>
                 </div>
             </div>
@@ -143,8 +172,12 @@
                                title="Enter a date in this format YYYY-MM-DD"
                                type="date"/>
                     </div>
-                    <div class="col-sm-3">
-                        <label class="font-size-sm">{{patient.currentAge}} Age</label>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label class="font-size-sm">Age : {{patient.currentAge}} </label>
                     </div>
                 </div>
             </div>
@@ -166,24 +199,29 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-6">
                 <div class="row">
 
                 </div>
             </div>
-            <div class="col-4">
-
+            <div class="col-1">
+            </div>
+            <div class="col-1">
+                <button class="btn btn-success" ng-click="saveModal();" ng-disabled="isDisabledSave"
+                        style="width: 50px;"
+                        type="button"><i
+                        aria-hidden="true" class="fa fa-save"></i></button>
             </div>
         </div>
     </div>
 
 
-    <div ng-if="showMediTest">
+    <!--<div ng-if="!showMediTest">
         <hr/>
         <div class="container rounded" style="border:1px solid blanchedalmond">
             <div class="row pt-3 pb-3">
 
-                <div class="col-2">
+                <div class="col-2 p-2 bg-info">
                     <div class="row">
                         <div class="col-sm-4">
                             <label class="font-size-sm">Type</label>
@@ -196,7 +234,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-4">
+                <div class="col-4 bg-warning">
                     <div class="row">
                         <div class="col-sm-2">
                             <label class="font-size-sm">Test</label>
@@ -212,20 +250,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-6 bg-primary">
                     <div class="row">
                         <div class="col-sm-2">
                             <label class="font-size-sm">SeenBy</label>
                         </div>
-                        <div class="col-sm-6">
-                            <select class="form-control" ng-disabled="uicompo.itemDisabled"
+                        <div class="col-sm-4">
+                            <select class="form-control"
                                     ng-model="patient.seenBy" style="width: 250px;">
                                 <option ng-repeat="c in seenByList">{{c.name}}</option>
                             </select>
                         </div>
                         <div class="col-sm-4">
-                            <button class="btn btn-danger" data-dismiss="modal" ng-click="addSelectedTest()"
-                                    testType="button">
+                            <button class="btn btn-danger" data-dismiss="modal" ng-click="showAddTest()"
+                                    type="button">
                                 <i
                                         class="text-warning fa fa-plus"></i> ADD
                             </button>&nbsp;
@@ -233,6 +271,39 @@
                     </div>
                 </div>
             </div>
+        </div>-->
+    <div ng-if="showMediTest">
+        <br>
+        <div class="row pt-1 pb-1">
+            &nbsp;&nbsp;&nbsp;
+            <button class="btn btn-primary pr-sm-1" ng-click="showAddTest();" ng-show="true"
+                    style="width: 45px;"
+                    title="Add Test to the Patient Test list"
+                    type="button"><i
+                    class="fa fa-plus-circle"></i></button>
+            <span class="pl-sm-1" ng-show="true"></span>
+
+            <button class="btn btn-warning pr-sm-1" ng-click="saveTestList();" ng-show="true"
+                    style="width: 45px;"
+                    title="Save Test List"
+                    type="button"><i
+                    class="fa fa-save"></i></button>
+            <span class="pl-sm-1" ng-show="true"></span>
+
+            <button class="btn btn-info pr-sm-1" ng-click="print()" ng-show="true" style="width: 45px;"
+                    title="Print Report"
+                    type="button"><i
+                    class="fa fa-search"></i></button>
+            <span class="pl-sm-1" ng-show="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input ng-model="uicompo.billingNumber" style="width: 150px;"
+                   type="text">
+
+            <button class="btn btn-warning pr-sm-1" ng-click="loadByBillingNum();" ng-show="true"
+                    style="width: 45px;"
+                    title="Re - Print"
+                    type="button"><i
+                    class="fa fa-save"></i></button>
+            <span class="pl-sm-1" ng-show="true"></span>
         </div>
 
         <div class="raw view pt-3">
@@ -241,15 +312,16 @@
                     <thead class="bg-secondary text-light">
                     <tr>
                         <th width="2%">#</th>
+                        <th width="15%">Bill #</th>
                         <th width="5%">Type</th>
-                        <th width="5%">Test #</th>
+                        <th width="15%">Test #</th>
                         <th width="35%">Medical Test Name</th>
                         <th width="10%">Price</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr ng-dblclick="showUI(itm,'edit')"
-                        ng-repeat="itm in patientMediTestList | filter : searchKeyword">
+                        ng-repeat="itm in billingList | filter : searchKeyword">
                         <td class="first-col">
                             <div class="d-flex justify-content-center">
                                 <button class="btn btn-link btn-sm" data-toggle="tooltip"
@@ -259,14 +331,148 @@
                                 </button>
                             </div>
                         </td>
+                        <th>{{itm.billingNumber}}</th>
                         <th>{{itm.testType}}</th>
                         <th>{{itm.testNumber}}</th>
                         <th>{{itm.name}}</th>
-                        <th>{{itm.price}}</th>
+                        <th>{{itm.price | currency:"Rs ":0}}</th>
                     </tr>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+
+
 </div>
+</div>
+
+<div class="modal fade" id="modal-billing-search">
+    <div class="modal-dialog modal-md modal-dialog-centered">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">{{heading}}</h4>
+                <button class="close" data-dismiss="modal" type="button">&times;</button>
+            </div>
+            <form name="form" ng-submit="save_submit();" role="form">
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="container rounded" style="border:1px solid blanchedalmond">
+                        <div class="row pt-3">
+                            <div class="col-sm-4 input-group">
+                                <label class="font-size-sm">SEARCH ID</label>
+                            </div>
+                            <div class="col-sm-8 input-group">
+                                <input list="patientId" ng-change="loadPatientList()"
+                                       ng-keypress="keypressId($event)"
+                                       ng-model="patient.patientId"
+                                       type="text">
+                                <datalist id="patientId" ng-model="patient.patientId">
+                                    <option ng-repeat="p in ptestList">{{p.patientId}}</option>
+                                </datalist>
+                            </div>
+                        </div>
+                        OR
+                        <div class="row pt-3 pb-3">
+                            <div class="col-sm-4 input-group">
+                                <label class="font-size-sm">NIC #</label>
+                            </div>
+                            <div class="col-sm-8 input-group">
+                                <input list="nicNumber" ng-change="loadPatientListByNIC()"
+                                       ng-keypress="keypressNic($event)"
+                                       ng-model="patient.nicNumber"
+                                       type="text">
+                                <datalist id="nicNumber" ng-model="patient.nicNumber">
+                                    <option ng-repeat="p in ptestList">{{p.nicNumber}}</option>
+                                </datalist>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-add-test">
+    <div class="modal-dialog modal-md modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">ADD MEDICAL TEST</h4>
+                <button class="close" data-dismiss="modal" type="button">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="container rounded" style="border:1px solid darkgreen">
+                    <div class="row pt-3">
+                        <div class="col-sm-4 input-group">
+                            <label class="font-size-sm">SeenBy</label>
+                        </div>
+                        <div class="col-sm-8 input-group">
+                            <select class="form-control"
+                                    ng-model="patient.seenBy" style="width: 250px;">
+                                <option ng-repeat="c in seenByList">{{c.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row pt-3">
+                        <div class="col-sm-4 input-group">
+                            <label class="font-size-sm">Type</label>
+                        </div>
+                        <div class="col-sm-8 input-group">
+                            <select class="form-control" ng-change="onSelectTestType()"
+                                    ng-model="uicompo.selectedTestType" style="width: 75px;">
+                                <option ng-repeat="c in testTypeList">{{c.value}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row pt-3">
+                        <div class="col-sm-4 input-group">
+                            <label class="font-size-sm">Billing #</label>
+                        </div>
+                        <div>
+                            <input ng-model="uicompo.billingNumber" style="width: 150px;"
+                                   type="text">
+                        </div>
+                    </div>
+
+                    <div class="row pt-3">
+                        <div class="col-sm-4 input-group">
+                            <label class="font-size-sm">TEST</label>
+                        </div>
+                        <div class="col-sm-8 input-group">
+                            <select class="form-control" ng-model="uicompo.selectedTest"
+                                    style="width: 250px;">
+                                <option ng-repeat="item in mediTestList" value="{{item}}">{{item.name}} -
+                                    {{item.price | currency:"Rs ":0}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row pt-3 pb-3">
+                        <div class="col-sm-10 input-group">
+
+                        </div>
+                        <div class="col-sm-2 input-group">
+                            <button class="btn btn-success" data-dismiss="modal" ng-click="addSelectedTest()"
+                                    type="button">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

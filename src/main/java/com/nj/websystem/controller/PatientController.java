@@ -3,11 +3,14 @@ package com.nj.websystem.controller;
 import com.nj.websystem.model.Patient;
 import com.nj.websystem.rest.HttpResponse;
 import com.nj.websystem.service.PatientService;
+import com.nj.websystem.util.DateUtility;
+import com.nj.websystem.util.StringUtility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +24,19 @@ public class PatientController {
     @Autowired
     private PatientService services;
 
+    @RequestMapping(value = "/getNextPatientId", method = RequestMethod.GET, headers = "Accept=application/json")
+    public HttpResponse getNextPatientId() {
+
+        HttpResponse res = new HttpResponse();
+        int yearlyRecordCount = services.findAll().size();
+        String nextPatientId = StringUtility.getDate(String.format("%05d", (yearlyRecordCount + 1)));
+        logger.info("Patient - NextPatientId : {} " + nextPatientId);
+        res.setResponse(nextPatientId);
+        res.setSuccess(true);
+        res.setRecCount(1);
+        return res;
+    }
+
     @RequestMapping(value = "/getList", method = RequestMethod.GET, headers = "Accept=application/json")
     public List getList() {
         List list = services.findAll();
@@ -30,7 +46,7 @@ public class PatientController {
 
     @RequestMapping(value = "/getById", method = RequestMethod.GET, headers = "Accept=application/json")
     public HttpResponse getById(@RequestParam(value = "id", required = false) long id) {
-        logger.info("Request UserAdmin Id : {} " + id);
+        logger.info("Request Patient getById : {} " + id);
         HttpResponse res = new HttpResponse();
         Optional<Patient> patientList = services.findById(id);
         if (patientList != null) {
@@ -46,7 +62,7 @@ public class PatientController {
 
     @RequestMapping(value = "/findByPatientId", method = RequestMethod.GET, headers = "Accept=application/json")
     public HttpResponse findByPatientId(@RequestParam(value = "patientId", required = true) String patientId) {
-        logger.info("Request UserAdmin Id : {} " + patientId);
+        logger.info("Request Patient findByPatientId : {} " + patientId);
         HttpResponse res = new HttpResponse();
         List<Patient> patientList = services.findByPatientId(patientId);
         if (patientList != null && !patientList.isEmpty()) {
@@ -62,7 +78,7 @@ public class PatientController {
 
     @RequestMapping(value = "/findByPatientListById", method = RequestMethod.GET, headers = "Accept=application/json")
     public HttpResponse findByPatientListById(@RequestParam(value = "patientId", required = false) String patientId) {
-        logger.info("Request UserAdmin Id : {} " + patientId);
+        logger.info("Request Patient findByPatientListById : {} " + patientId);
         HttpResponse res = new HttpResponse();
         List<Patient> patientList = services.findByPatientIdContaining(patientId);
         if (patientList != null && !patientList.isEmpty()) {
@@ -78,7 +94,7 @@ public class PatientController {
 
     @RequestMapping(value = "/findByNicNumber", method = RequestMethod.GET, headers = "Accept=application/json")
     public HttpResponse findByNicNumber(@RequestParam(value = "id", required = false) String nicNumber) {
-        logger.info("Request UserAdmin Id : {} " + nicNumber);
+        logger.info("Request Patient findByNicNumber : {} " + nicNumber);
         HttpResponse res = new HttpResponse();
         List<Patient> patientList = services.findByNicNumber(nicNumber);
         if (patientList != null && !patientList.isEmpty()) {
@@ -94,15 +110,15 @@ public class PatientController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST, headers = "Accept=application/json")
     public Patient save(@RequestBody Patient obj) {
-        logger.info("UserAdmin Name : {} " + obj.getNicNumber());
+        logger.info("save Patient Name : {} " + obj.getNicNumber());
         return services.save(obj);
     }
 
-/*    @RequestMapping(value = "/delete", method = RequestMethod.DELETE, headers = "Accept=application/json")
+    @RequestMapping(value = "/delete", method = RequestMethod.DELETE, headers = "Accept=application/json")
     public HttpResponse delete(@RequestParam(value = "id", required = false) Long id) {
-        logger.info("Delete UserAdmin Name : {} " + id);
+        logger.info("Delete Patient id : {} " + id);
         HttpResponse response = new HttpResponse();
-        UserAdmin item = services.getOne(id);
+        Patient item = services.getOne(id);
         if (item != null) {
             services.delete(item);
             response.setSuccess(true);
@@ -113,15 +129,4 @@ public class PatientController {
         }
         return response;
     }
-
-    @RequestMapping(value = "/bulkInsert", method = RequestMethod.POST, headers = "Accept=application/json")
-    public List<UserAdmin> bulkInsert(@RequestBody List<UserAdmin> items) {
-        logger.info("UserAdmin countt : {} " + items.size());
-        items.forEach(item -> {
-            item.setId(null);
-            item.setDateCreated(new Date());
-        });
-        return services.saveAll(items);
-    }*/
-
 }

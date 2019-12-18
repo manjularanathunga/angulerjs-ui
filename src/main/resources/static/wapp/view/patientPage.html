@@ -35,8 +35,7 @@
                     <th>PATIENTNAME</th>
                     <th>TELNUMBER</th>
                     <th>DATEOFBIRTH</th>
-                    <th>sex</th>
-                    <th>SEENBY</th>
+                    <th>SEX</th>
                     <th>ACTIONBY</th>
                     <th>DATECREATED</th>
                     <th>LASTMODIFIED</th>
@@ -60,7 +59,6 @@
                     <th>{{itm.telNumber}}</th>
                     <th>{{itm.dateOfBirth | date:'MM/dd/yyyy'}}</th>
                     <th>{{itm.gender}}</th>
-                    <th>{{itm.seenBy}}</th>
                     <th>{{itm.actionBy}}</th>
                     <th>{{itm.dateCreated | date:'medium'}}</th>
                     <th>{{itm.lastModified | date:'medium'}}</th>
@@ -85,21 +83,21 @@
             <form name="form" ng-submit="save_submit();" role="form">
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <div class="row">
+                    <div class="row pb-1">
                         <div class="col-4">
                             <div class="row">
                                 <div class="col-sm-3">
                                     <label class="font-size-sm">Patient</label>
                                 </div>
                                 <div class="col-sm-3">
-                                    <input ng-disabled="itemDisabled" ng-model="patient.patientId" type="text">
+                                    <input ng-disabled="itemDisabled" ng-model="patient.patientId" type="text" disabled>
                                 </div>
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <label class="font-size-sm">Name</label>
+                                    <label class="font-size-sm">NIC #</label>
                                 </div>
                                 <div class="col-sm-3">
                                     <input ng-disabled="itemDisabled" ng-model="patient.nicNumber" type="text">
@@ -117,7 +115,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row pb-1">
                         <div class="col-4">
                             <div class="row">
                                 <div class="col-sm-3">
@@ -152,7 +150,7 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row pb-1">
                         <div class="col-6">
                             <div class="row">
                                 <div class="col-sm-4">
@@ -165,14 +163,14 @@
                             </div>
                         </div>
                         <div class="col-6">
-                            <div class="row">
+<!--                            <div class="row">
                                 <div class="col-sm-3">
                                     <label class="font-size-sm">SeenBy</label>
                                 </div>
                                 <div class="col-sm-3">
                                     <input ng-disabled="itemDisabled" ng-model="patient.seenBy" type="text">
                                 </div>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
 

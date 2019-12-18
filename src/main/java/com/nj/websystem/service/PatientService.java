@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.Date;
 import java.util.List;
 
 public interface PatientService extends JpaRepository<Patient, Long> {
@@ -19,5 +20,9 @@ public interface PatientService extends JpaRepository<Patient, Long> {
     // @Query("From MedicalTest ORDER BY patient_name ASC")
     List<Patient> findAll();
 
+    public List<Patient> getAllByDateCreatedBetween(Date startDate, Date endDate);
 
+    //long countByDateCreatedBetween(Date startDate, Date endDate);
+
+    //long countByAll();
 }

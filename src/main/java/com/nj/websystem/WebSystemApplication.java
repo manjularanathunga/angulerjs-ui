@@ -29,8 +29,6 @@ public class WebSystemApplication {
         SpringApplication.run(WebSystemApplication.class, args);
     }
 
-
-
     @Bean
     public CommandLineRunner CommandLineRunner() {
         List<UserAdmin> adminUsers =new ArrayList<>();

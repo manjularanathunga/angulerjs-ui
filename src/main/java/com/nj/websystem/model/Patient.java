@@ -15,6 +15,7 @@ public class Patient {
     @SequenceGenerator(name = "TBL_PATIENT_SEQ", sequenceName = "TBL_PATIENT_SEQ", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TBL_PATIENT_SEQ")
     private Long id;
+    @Column(unique = true)
     private String patientId;
     @Column(unique = true)
     private String nicNumber;
@@ -23,6 +24,7 @@ public class Patient {
     private String telNumber;
     private Date dateOfBirth;
     private String cityName;
+    private String patientAddress;
     private String districtName;
     private Gender gender;
     private String actionBy;
@@ -30,6 +32,15 @@ public class Patient {
     private Date dateCreated;
     private Date lastModified;
     private Status status;
+
+
+    public String getPatientAddress() {
+        return patientAddress;
+    }
+
+    public void setPatientAddress(String patientAddress) {
+        this.patientAddress = patientAddress;
+    }
 
     public Long getId() {
         return id;

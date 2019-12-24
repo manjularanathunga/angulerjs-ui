@@ -37,65 +37,10 @@
                         <span class="pl-sm-1" ng-show="btnSearch"></span>
                     </div>
                 </div>
-                <!--                <div class="col-sm-6">
-                                    <div class="row">&nbsp;
-                                        <button class="btn btn-primary" data-dismiss="modal" ng-click="saveUpdatePatient()"
-                                                type="button"><i
-                                                class="text-warning fa fa-plus"></i> ADD
-                                        </button>&nbsp;
-
-                                        <button class="btn btn-warning" data-dismiss="modal" ng-click="saveUpdatePatient()"
-                                                type="button"><i
-                                                class="text-warning fa fa-plus"></i>Search
-                                        </button>&nbsp;
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="row">
-                                        <button class="btn btn-success" data-dismiss="modal" ng-click="saveUpdatePatient()"
-                                                type="button"><i
-                                                class="text-warning fa fa-plus"></i> Save
-                                        </button>&nbsp;
-                                        <button class="btn btn-danger" data-dismiss="modal" ng-click="clearCurrentPatient()"
-                                                type="button"><i
-                                                class="text-warning fas fa-eraser"></i>Clear
-                                        </button>&nbsp;
-                                    </div>
-                                </div>-->
             </div>
         </div>
     </div>
     <div class="container rounded" style="border:1px solid blanchedalmond">
-
-        <!--        <div class="row pt-3">
-                    <div class="col-6">
-                        <div class="row">
-                            <div class="col-sm-2">
-                                <label class="font-size-sm">SEARCH ID</label>
-                            </div>
-                            <div class="col-sm-6">
-                                <input list="patientId" ng-change="loadPatientList()" ng-keypress="keypress($event)"
-                                       ng-model="patient.patientId"
-                                       type="text">
-                                <datalist id="patientId" ng-model="patient.patientId">
-                                    <option ng-repeat="p in ptestList">{{p.patientId}}</option>
-                                </datalist>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <label class="font-size-sm">Date</label>
-                            </div>
-                            <div class="col-sm-9">
-                                {{patient.dateCreated | date:'short'}}
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
-
-
         <div class="row l-raw">
             <div class="col-6">
                 <div class="row">
@@ -176,7 +121,7 @@
             </div>
             <div class="col-2">
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-12">
                         <label class="font-size-sm">Age : {{patient.currentAge}} </label>
                     </div>
                 </div>
@@ -218,14 +163,14 @@
         <br>
         <div class="row pt-1 pb-1">
             &nbsp;&nbsp;&nbsp;
-            <button class="btn btn-primary pr-sm-1" ng-click="showAddTest();" ng-show="true"
+            <button class="btn btn-primary pr-sm-1" ng-click="showAddTest();" ng-disabled="disabledAddTest"
                     style="width: 45px;"
                     title="Add Test to the Patient Test list"
                     type="button"><i
                     class="fa fa-plus-circle"></i></button>
             <span class="pl-sm-1" ng-show="true"></span>
 
-            <button class="btn btn-warning pr-sm-1" ng-click="saveTestList();" ng-show="true"
+            <button class="btn btn-warning pr-sm-1" ng-click="saveTestList();" ng-disabled="disabledSaveTestList"
                     style="width: 45px;"
                     title="Save Test List"
                     type="button"><i
@@ -233,21 +178,27 @@
             <span class="pl-sm-1" ng-show="true"></span>
 
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input ng-model="uicompo.billingNumber" style="width: 150px;"
+            <input ng-model="uicompo.billingNumber" style="width: 150px;" ng-disabled="disabledTxtBillingNumber"
                    type="text">
 
-            <button class="btn btn-warning pr-sm-1" ng-click="loadByBillingNum();" ng-show="true"
+            <button class="btn btn-warning pr-sm-1" ng-click="loadByBillingNum();" ng-disabled="disabledLoadByBillingNum"
                     style="width: 45px;"
                     title="Re - Print"
                     type="button"><i
                     class="fa fa-search"></i></button>
             <span class="pl-sm-1" ng-show="true"></span>
 
-            <button class="btn btn-info pr-sm-1" ng-click="print()" ng-show="true" style="width: 45px;"
+            <button class="btn btn-info pr-sm-1" ng-click="printPage()" style="width: 45px;" ng-disabled="disabledPrintPage"
                     title="Print Report"
                     type="button"><i
                     class="fa fa fa-print"></i></button>
             <span class="pl-sm-1" ng-show="true"></span>
+
+            <button class="btn btn-danger" ng-click="resetTList()" ng-disabled="disabledResetTestList"
+                    style="width: 45px;"
+                    type="button"><i
+                    aria-hidden="true" class="fa fa fa-reply"></i></button>
+            <span class="pl-sm-1" ng-show="btnReset"></span>
 
         </div>
 
@@ -416,6 +367,18 @@
     </div>
 </div>
 
+<div id="myDiv">
+<html>
+<head>
+    <title>Printing Bill</title>
+</head>
+
+<boda>
+
+</boda>
+
+</html>
+</div>
 
 
 

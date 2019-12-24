@@ -29,6 +29,14 @@ app.controller('BillingController', function($scope, $rootScope, $http, $locatio
     $scope.uicompo.selectedTest = {};
     $scope.uicompo.itemDisabled = true;
 
+    $scope.disabledAddTest = false;
+    $scope.disabledSaveTestList = true;
+    $scope.disabledTxtBillingNumber = false;
+    $scope.disabledLoadByBillingNum = false;
+    $scope.disabledPrintPage = true;
+    $scope.disabledResetTestList = false;
+
+
 
 
     var onload = function() {
@@ -146,41 +154,29 @@ app.controller('BillingController', function($scope, $rootScope, $http, $locatio
 
         $scope.billingList.push(saveTest);
 
-        /*        $http.post('/patientmedicaltest/save', saveTest)
-                    .then(function(resp) {
-
-                        Pop.timeMsg('success', 'MEDICAL TEST ADDED ', ' TEST HAS BEEN ADDED TO PATIENT ', 2000);
-                        $scope.medicalTest = {};
-                        $scope.mtest = {};
-                        loadPatientMediTestList($scope.patient.patientId, $scope.uicompo.selectedTestType);
-                        selected = {};
-                        $scope.uicompo = {};
-
-                        if (resp.data.success) {
-                            // Pop.timeMsg('success', 'MEDICAL TEST ADDED ', '<<' + $scope.medicalTest.mtnumber + '>> has been added to patient <<' + b.patientId + '>>', 3000);
-
-                        } else {
-                            // Pop.timeMsg('error', 'MEDICAL TEST ADDED ', '<<' + $scope.medicalTest.mtnumber + '>> has not added to <<' + b.patientId + '>>', 3000);
-                            $scope.mediTestList = [];
-                        }
-                    }, function(resp) {
-                        Pop.msgWithButton('MEDICAL TEST ADDED', resp.data.error, 'error');
-                    }).catch(function(err) {
-                    Pop.msgWithButton('MEDICAL TEST ADDED', resp.data.error, 'error');
-                    //loadPatientMediTestList($scope.patient.patientId, $scope.uicompo.selectedTestType);
-                    });*/
+        if($scope.billingList.length > 0){
+            $scope.disabledSaveTestList = false;
+            $scope.disabledTxtBillingNumber = true;
+            $scope.disabledLoadByBillingNum = true;
+        }else{
+            $scope.disabledSaveTestList = true;
+        }
     };
 
     $scope.saveTestList = function() {
         if ($scope.billingList.length == 0) {
-            Pop.msgWithButton('ADD MEDICAL TEST', 'NO TEST ITEM ADDED', 'error');
+            $scope.disabledPrintPage = true;    Pop.msgWithButton('ADD MEDICAL TEST', 'NO TEST ITEM ADDED', 'error');
             return;
         }
 
         $http.post('/patientmedicaltest/saveList', $scope.billingList)
             .then(function(resp) {
+                $scope.disabledPrintPage = false;
+                $scope.disabledSaveTestList = true;
+                $scope.disabledAddTest = true;
+                $scope.disabledTxtBillingNumber = true;
+                $scope.disabledLoadByBillingNum = true;
                 Pop.timeMsg('success', 'MEDICAL TEST ADDED ', ' TEST HAS BEEN ADDED TO PATIENT ', 2000);
-
             });
     };
 
@@ -305,14 +301,23 @@ app.controller('BillingController', function($scope, $rootScope, $http, $locatio
             .then(function(response) {
                 if (response.data.success) {
                     $scope.billingList = response.data.response;
-                    Pop.timeMsg('warning', 'Search By Billing # ', ' Records found ', 2000);
+                    if($scope.billingList.length > 0){
+                        $scope.disabledPrintPage = false;
+                        $scope.disabledAddTest = true;
+                        $scope.disabledSaveTestList = true;
+                    }else{
+                        Pop.timeMsg('danger', 'Search By Billing # ', ' Records not found ', 2000);
+                        resetTestListButtons();
+                    }
                 } else {
                     $scope.billingList = [];
+                    resetTestListButtons();
+                    Pop.timeMsg('danger', 'Search By Billing # ', ' Records not found ', 2000);
                 }
             }, function(response) {
-
+                $scope.billingList = [];
+                resetTestListButtons();
             });
-
     }
 
     $scope.addNewPatient = function search() {
@@ -348,6 +353,32 @@ app.controller('BillingController', function($scope, $rootScope, $http, $locatio
         $scope.mediTestList = [];
         $scope.patientMediTestList = [];
         $scope.showMediTest = false;
+        resetTestListButtons();
+    }
+
+    var resetTestListButtons = function() {
+        $scope.disabledAddTest = false;
+        $scope.disabledSaveTestList = true;
+        $scope.disabledTxtBillingNumber = false;
+        $scope.disabledLoadByBillingNum = false;
+        $scope.disabledPrintPage = true;
+        $scope.disabledResetTestList = false;
+    }
+
+    $scope.resetTList = function() {
+        // $scope.uicompo = {};
+        $scope.billingList = [];
+        $scope.mediTestList = [];
+        $scope.patientMediTestList = [];
+        resetTestListButtons();
+    }
+    //function printPage() {
+    $scope.printPage = function() {
+        var contentToPrint =  'jshjdhjshdhjshjdhs';// document.getElementById('#myDiv').innerHTML;
+        var windowPopup = window.open('', '_blank', 'width=500,height=500');
+        windowPopup.document.open();
+        windowPopup.document.write('<html><head><link rel="stylesheet" type="text/css" href="" /></head><body onload="window.print()">' + contentToPrint + '</body></html>');
+        windowPopup.document.close();
     }
 
     onload();

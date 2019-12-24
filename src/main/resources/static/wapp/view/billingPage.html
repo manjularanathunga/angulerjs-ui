@@ -214,64 +214,6 @@
             </div>
         </div>
     </div>
-
-
-    <!--<div ng-if="!showMediTest">
-        <hr/>
-        <div class="container rounded" style="border:1px solid blanchedalmond">
-            <div class="row pt-3 pb-3">
-
-                <div class="col-2 p-2 bg-info">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <label class="font-size-sm">Type</label>
-                        </div>
-                        <div class="col-sm-8">
-                            <select class="form-control" ng-change="onSelectTestType()"
-                                    ng-model="uicompo.selectedTestType" style="width: 75px;">
-                                <option ng-repeat="c in testTypeList">{{c.value}}</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4 bg-warning">
-                    <div class="row">
-                        <div class="col-sm-2">
-                            <label class="font-size-sm">Test</label>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <select class="form-control" ng-model="uicompo.selectedTest"
-                                    style="width: 250px;">
-                                <option ng-repeat="item in mediTestList" value="{{item}}">{{item.name}} -
-                                    Rs.{{item.price}}
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 bg-primary">
-                    <div class="row">
-                        <div class="col-sm-2">
-                            <label class="font-size-sm">SeenBy</label>
-                        </div>
-                        <div class="col-sm-4">
-                            <select class="form-control"
-                                    ng-model="patient.seenBy" style="width: 250px;">
-                                <option ng-repeat="c in seenByList">{{c.name}}</option>
-                            </select>
-                        </div>
-                        <div class="col-sm-4">
-                            <button class="btn btn-danger" data-dismiss="modal" ng-click="showAddTest()"
-                                    type="button">
-                                <i
-                                        class="text-warning fa fa-plus"></i> ADD
-                            </button>&nbsp;
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>-->
     <div ng-if="showMediTest">
         <br>
         <div class="row pt-1 pb-1">
@@ -290,11 +232,7 @@
                     class="fa fa-save"></i></button>
             <span class="pl-sm-1" ng-show="true"></span>
 
-            <button class="btn btn-info pr-sm-1" ng-click="print()" ng-show="true" style="width: 45px;"
-                    title="Print Report"
-                    type="button"><i
-                    class="fa fa-search"></i></button>
-            <span class="pl-sm-1" ng-show="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input ng-model="uicompo.billingNumber" style="width: 150px;"
                    type="text">
 
@@ -302,8 +240,15 @@
                     style="width: 45px;"
                     title="Re - Print"
                     type="button"><i
-                    class="fa fa-save"></i></button>
+                    class="fa fa-search"></i></button>
             <span class="pl-sm-1" ng-show="true"></span>
+
+            <button class="btn btn-info pr-sm-1" ng-click="print()" ng-show="true" style="width: 45px;"
+                    title="Print Report"
+                    type="button"><i
+                    class="fa fa fa-print"></i></button>
+            <span class="pl-sm-1" ng-show="true"></span>
+
         </div>
 
         <div class="raw view pt-3">

@@ -35,4 +35,15 @@ public class DateUtility {
         utilDate.setSeconds(1);
         return currentDate;
     }
+
+    public static Date getCuttentYear() {
+        Date utilDate = new Date();
+        utilDate.setYear(currentDate.getYear());
+        utilDate.setMonth(1);
+        utilDate.setDate(1);
+        utilDate.setHours(0);
+        utilDate.setMinutes(1);
+        utilDate.setSeconds(1);
+        return currentDate;
+    }
 }

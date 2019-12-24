@@ -64,6 +64,38 @@ public class PetientMedicalTestController {
         return res;
     }
 
+    @RequestMapping(value = "/getAllByTestTypeOrderByIdDesc", method = RequestMethod.GET, headers = "Accept=application/json")
+    public HttpResponse getAllByTestTypeOrderByIdDesc(@RequestParam(value = "type", required = false) TestType type) {
+        logger.info("Request findAllByPatientIdAndType Id : {type} "  + " | " + type);
+        HttpResponse res = new HttpResponse();
+        List<PatientMedicalTest> patientList = services.getAllByTestTypeOrderByIdDesc(type);
+        PatientMedicalTest medicalTest = null;
+
+        if(patientList.size() > 0){
+            medicalTest = patientList.get(0);
+        }
+
+        String nextNumber = "";
+        if(medicalTest != null){
+            String exitsingNumber =  medicalTest.getBillingNumber().substring(3,medicalTest.getBillingNumber().length());
+            logger.info("Patient - NextPatientId : {} " + exitsingNumber);
+            nextNumber = StringUtility.getDate(StringUtility.YY) + type + StringUtility.getFilledNumber((Integer.parseInt(exitsingNumber)+1),4L);
+        }else{
+            nextNumber = StringUtility.getDate(StringUtility.YY) + type +StringUtility.getFilledNumber((1),4L);
+        }
+
+        if (!StringUtility.isEmpty(nextNumber)) {
+            res.setResponse(nextNumber);
+            res.setSuccess(true);
+            res.setRecCount(1);
+        } else {
+            res.setSuccess(false);
+            res.setException("Fail to read next sequence !");
+        }
+
+        return res;
+    }
+
 
     @RequestMapping(value = "/save", method = RequestMethod.POST, headers = "Accept=application/json")
     public HttpResponse save(@RequestBody PatientMedicalTest obj) {
@@ -117,6 +149,24 @@ public class PetientMedicalTestController {
         return response;
     }
 */
+
+    @RequestMapping(value = "/findAllByPatientIdAndBillingNumber", method = RequestMethod.GET, headers = "Accept=application/json")
+    public HttpResponse findAllByPatientIdAndBillingNumber(@RequestParam(value = "patientid", required = false) String patientid, @RequestParam(value = "billingNumber", required = false) String billingNumber) {
+        logger.info("Delete OfficeRoom Name : {} " + billingNumber);
+        HttpResponse response = new HttpResponse();
+        List <PatientMedicalTest> itemList = services.findAllByPatientIdAndBillingNumber(patientid , billingNumber);
+        if (itemList != null && itemList.size() >0 ) {
+            response.setResponse(itemList);
+            response.setRecCount(itemList.size());
+            response.setSuccess(true);
+        } else {
+            response.setSuccess(false);
+            logger.info("Record not found  : {} " + billingNumber);
+            response.setException("Record not found  : {} " + billingNumber);
+        }
+        return response;
+    }
+
     @RequestMapping(value = "/saveList", method = RequestMethod.POST, headers = "Accept=application/json")
     public HttpResponse bulkInsert(@RequestBody List<PatientMedicalTest> items) {
         logger.info("PatientMedicalTest count : {} " + items.size());

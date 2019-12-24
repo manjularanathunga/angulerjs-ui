@@ -12,4 +12,16 @@ public class StringUtility {
         simpleDateFormat = new SimpleDateFormat(pattern);
         return simpleDateFormat.format(new Date());
     }
+
+    public static String getFilledNumber(int number, Long filCount) {
+        String format = "%0"+""+filCount+"d";
+        return String.format(format, (number));
+    }
+
+    public static boolean isEmpty(String value){
+        if(value != null){
+            return value.isEmpty();
+        }
+        return false;
+    }
 }

@@ -53,38 +53,6 @@ app.controller('BillingController', function($scope, $rootScope, $http, $locatio
             name: "Dr.XXXX"
         });
 
-        $scope.ptestList.push({
-            "id": 1,
-            "patientId": "P0001",
-            "nicNumber": "7878787V",
-            "other": "xc",
-            "patientName": "xxxxxx",
-            "telNumber": "xcxc",
-            "dateOfBirth": "2019-12-18T16:00:00.000+0000",
-            "gender": "MALE",
-            "seenBy": "xcx",
-            "actionBy": "-",
-            "bht": null,
-            "dateCreated": "2019-12-14T03:00:24.752+0000",
-            "lastModified": "2019-12-14T03:00:24.752+0000",
-            "status": "ACTIVE"
-        }, {
-            "id": 2,
-            "patientId": "P0002",
-            "nicNumber": "8787878v",
-            "other": "as",
-            "patientName": "asasasas",
-            "telNumber": "as",
-            "dateOfBirth": "2019-12-17T16:00:00.000+0000",
-            "gender": "MALE",
-            "seenBy": "as",
-            "actionBy": "-",
-            "bht": null,
-            "dateCreated": "2019-12-14T07:00:12.083+0000",
-            "lastModified": "2019-12-14T07:00:12.083+0000",
-            "status": "ACTIVE"
-        });
-
         $scope.districtByList.push({
             name: "KANDY"
         });
@@ -94,8 +62,6 @@ app.controller('BillingController', function($scope, $rootScope, $http, $locatio
         $scope.districtByList.push({
             name: "NUWARA-ELIYA"
         });
-
-
         //$scope.loadPatientList();
     };
 
@@ -121,14 +87,15 @@ app.controller('BillingController', function($scope, $rootScope, $http, $locatio
             }, function(resp) {
 
             }).catch(function(e) {
-                Pop.timeMsg('error', 'ADDED PATIENT', ' PATIENT SAVING NOT SUCCESS ' + e, 5000);
-            });
+            Pop.timeMsg('error', 'ADDED PATIENT', ' PATIENT SAVING NOT SUCCESS ' + e, 5000);
+        });
     };
 
     $scope.onSelectTestType = function() {
         loadMedicalTestList($scope.uicompo.selectedTestType);
         if ($scope.patient) {
             loadPatientMediTestList($scope.patient.patientId, $scope.uicompo.selectedTestType);
+            getNextNumber($scope.uicompo.selectedTestType);
         } else {
             $scope.mediTestList = [];
             $scope.patientMediTestList = [];
@@ -146,7 +113,7 @@ app.controller('BillingController', function($scope, $rootScope, $http, $locatio
 
         var saveTest = {};
 
-        if(!selected){
+        if (!selected) {
             Pop.timeMsg('error', 'MEDICAL TEST ADDED ', ' PLEASE SELECT THE TEST ', 2000);
             return;
         }
@@ -179,33 +146,33 @@ app.controller('BillingController', function($scope, $rootScope, $http, $locatio
 
         $scope.billingList.push(saveTest);
 
-/*        $http.post('/patientmedicaltest/save', saveTest)
-            .then(function(resp) {
+        /*        $http.post('/patientmedicaltest/save', saveTest)
+                    .then(function(resp) {
 
-                Pop.timeMsg('success', 'MEDICAL TEST ADDED ', ' TEST HAS BEEN ADDED TO PATIENT ', 2000);
-                $scope.medicalTest = {};
-                $scope.mtest = {};
-                loadPatientMediTestList($scope.patient.patientId, $scope.uicompo.selectedTestType);
-                selected = {};
-                $scope.uicompo = {};
+                        Pop.timeMsg('success', 'MEDICAL TEST ADDED ', ' TEST HAS BEEN ADDED TO PATIENT ', 2000);
+                        $scope.medicalTest = {};
+                        $scope.mtest = {};
+                        loadPatientMediTestList($scope.patient.patientId, $scope.uicompo.selectedTestType);
+                        selected = {};
+                        $scope.uicompo = {};
 
-                if (resp.data.success) {
-                    // Pop.timeMsg('success', 'MEDICAL TEST ADDED ', '<<' + $scope.medicalTest.mtnumber + '>> has been added to patient <<' + b.patientId + '>>', 3000);
+                        if (resp.data.success) {
+                            // Pop.timeMsg('success', 'MEDICAL TEST ADDED ', '<<' + $scope.medicalTest.mtnumber + '>> has been added to patient <<' + b.patientId + '>>', 3000);
 
-                } else {
-                    // Pop.timeMsg('error', 'MEDICAL TEST ADDED ', '<<' + $scope.medicalTest.mtnumber + '>> has not added to <<' + b.patientId + '>>', 3000);
-                    $scope.mediTestList = [];
-                }
-            }, function(resp) {
-                Pop.msgWithButton('MEDICAL TEST ADDED', resp.data.error, 'error');
-            }).catch(function(err) {
-            Pop.msgWithButton('MEDICAL TEST ADDED', resp.data.error, 'error');
-            //loadPatientMediTestList($scope.patient.patientId, $scope.uicompo.selectedTestType);
-            });*/
+                        } else {
+                            // Pop.timeMsg('error', 'MEDICAL TEST ADDED ', '<<' + $scope.medicalTest.mtnumber + '>> has not added to <<' + b.patientId + '>>', 3000);
+                            $scope.mediTestList = [];
+                        }
+                    }, function(resp) {
+                        Pop.msgWithButton('MEDICAL TEST ADDED', resp.data.error, 'error');
+                    }).catch(function(err) {
+                    Pop.msgWithButton('MEDICAL TEST ADDED', resp.data.error, 'error');
+                    //loadPatientMediTestList($scope.patient.patientId, $scope.uicompo.selectedTestType);
+                    });*/
     };
 
     $scope.saveTestList = function() {
-        if($scope.billingList.length == 0){
+        if ($scope.billingList.length == 0) {
             Pop.msgWithButton('ADD MEDICAL TEST', 'NO TEST ITEM ADDED', 'error');
             return;
         }
@@ -219,6 +186,7 @@ app.controller('BillingController', function($scope, $rootScope, $http, $locatio
 
 
     $scope.clearCurrentPatient = function() {
+        console.log('clearCurrentPatient');
         $scope.patient = {};
         $scope.medicalTest = {};
         $scope.patientMediTestList = [];
@@ -229,7 +197,7 @@ app.controller('BillingController', function($scope, $rootScope, $http, $locatio
     };
 
     $scope.loadPatientList = function() {
-        //console.log('loadPatientList');
+        console.log('loadPatientList');
         if ($scope.patient.patientId.length > 3) {
             $http.get("patient/findByPatientListById?patientId=" + $scope.patient.patientId)
                 .then(function(response) {
@@ -247,7 +215,6 @@ app.controller('BillingController', function($scope, $rootScope, $http, $locatio
         }
     };
 
-
     $scope.findByPatientId = function(patientId) {
         $http.get("patient/findByPatientId?patientId=" + patientId)
             .then(function(resp) {
@@ -261,8 +228,8 @@ app.controller('BillingController', function($scope, $rootScope, $http, $locatio
             }, function(response) {
                 //Pop.msgWithButton('UPDATE','Fail User '+ item.fistName + ' Saving', 'error');
             }).catch(function() {
-                //Pop.timeMsg('error', 'ADDED PATIENT', ' PATIENT SAVING NOT SUCCESS ' + e, 3000);
-            });
+            //Pop.timeMsg('error', 'ADDED PATIENT', ' PATIENT SAVING NOT SUCCESS ' + e, 3000);
+        });
     };
 
     $scope.findByNicNumber = function() {
@@ -274,6 +241,7 @@ app.controller('BillingController', function($scope, $rootScope, $http, $locatio
                 $scope.uicompo.itemDisabled = true;
                 $scope.isDisabledSave = true;
                 $scope.patient.currentAge = (new Date().getFullYear() - $scope.patient.dateOfBirth.getFullYear());
+                resetTestList();
                 $("#modal-billing-search").modal("hide");
             }, function(response) {
                 //Pop.msgWithButton('UPDATE','Fail User '+ item.fistName + ' Saving', 'error');
@@ -294,13 +262,15 @@ app.controller('BillingController', function($scope, $rootScope, $http, $locatio
     };
 
     var loadPatientMediTestList = function(patientId, selectedTestType) {
-        var res = $http.get("patientmedicaltest/findAllByPatientIdAndType?patientid=" + patientId + "&type=" + selectedTestType).then(function(response) {
+        var res = $http.get("patientmedicaltest/findAllByPatientIdAndType?patientid=" + $scope.patient.patientId + "&type=" + selectedTestType).then(function(response) {
             if (response.data.success) {
                 $scope.patientMediTestList = response.data.response;
             } else {
                 $scope.patientMediTestList = [];
             }
-        }, function(response) {});
+        }, function(response) {
+
+        });
     };
 
     $scope.keypressId = function(e) {
@@ -322,6 +292,7 @@ app.controller('BillingController', function($scope, $rootScope, $http, $locatio
 
     $scope.showSearch = function search() {
         $scope.patient = {};
+        resetTestList();
         $("#modal-billing-search").modal("show");
     }
 
@@ -330,7 +301,18 @@ app.controller('BillingController', function($scope, $rootScope, $http, $locatio
     }
 
     $scope.loadByBillingNum = function search() {
-        Pop.timeMsg('warning', 'Search By Billing # ', ' Page under maintenance ', 2000);
+        var res = $http.get("patientmedicaltest/findAllByPatientIdAndBillingNumber?patientid=" + $scope.patient.patientId + "&billingNumber=" + $scope.uicompo.billingNumber)
+            .then(function(response) {
+                if (response.data.success) {
+                    $scope.billingList = response.data.response;
+                    Pop.timeMsg('warning', 'Search By Billing # ', ' Records found ', 2000);
+                } else {
+                    $scope.billingList = [];
+                }
+            }, function(response) {
+
+            });
+
     }
 
     $scope.addNewPatient = function search() {
@@ -340,9 +322,33 @@ app.controller('BillingController', function($scope, $rootScope, $http, $locatio
                 $scope.uicompo.itemDisabled = false;
                 $scope.isDisabledSave = false;
                 $scope.patient.patientId = resp.data.response;
+                resetTestList();
             }, function(error) {
                 //console.log('error > ' + error);
             });
     }
+
+    var getNextNumber = function(selectedTestType) {
+        var res = $http.get("patientmedicaltest/getAllByTestTypeOrderByIdDesc?type=" + selectedTestType)
+            .then(function(response) {
+                if (response.data.success) {
+                    $scope.uicompo.billingNumber = response.data.response;
+                } else {
+                    $scope.uicompo.billingNumber = '';
+                }
+            }, function(response) {
+
+            });
+    }
+
+    var resetTestList = function() {
+        console.log('resetTestList');
+        $scope.uicompo = {};
+        $scope.billingList = [];
+        $scope.mediTestList = [];
+        $scope.patientMediTestList = [];
+        $scope.showMediTest = false;
+    }
+
     onload();
 });

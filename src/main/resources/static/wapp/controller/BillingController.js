@@ -143,6 +143,11 @@ app.controller('BillingController', function($scope, $rootScope, $http, $locatio
             return;
         }
 
+        if (!$scope.uicompo.billingNumber || $scope.uicompo.billingNumber.length < 5) {
+            Pop.msgWithButton('ADD MEDICAL TEST', 'Invalid Bill #', 'error');
+            return;
+        }
+
         saveTest.testNumber = saveTest.testNumber;
         saveTest.patientId = $scope.patient.patientId;
         saveTest.lastDateModified = new Date();
@@ -293,8 +298,14 @@ app.controller('BillingController', function($scope, $rootScope, $http, $locatio
     }
 
     $scope.showAddTest = function search() {
+        $scope.uicompo.selectedTest = '';
         $("#modal-add-test").modal("show");
     }
+
+    $scope.serchOldBillNo = function search() {
+        $("#modal-old-billing-search").modal("show");
+    }
+
 
     $scope.loadByBillingNum = function search() {
         var res = $http.get("patientmedicaltest/findAllByPatientIdAndBillingNumber?patientid=" + $scope.patient.patientId + "&billingNumber=" + $scope.uicompo.billingNumber)
@@ -337,9 +348,9 @@ app.controller('BillingController', function($scope, $rootScope, $http, $locatio
         var res = $http.get("patientmedicaltest/getAllByTestTypeOrderByIdDesc?type=" + selectedTestType)
             .then(function(response) {
                 if (response.data.success) {
-                    $scope.uicompo.billingNumber = response.data.response;
+                    $scope.uicompo.showBillingNumber = response.data.response;
                 } else {
-                    $scope.uicompo.billingNumber = '';
+                    $scope.uicompo.showBillingNumber = '';
                 }
             }, function(response) {
 

@@ -22,6 +22,9 @@ public class PatientMedicalTest {
     private String name;
     @Column(precision = 2, scale = 0)
     private Double price;
+    private String reference;
+    private String units;
+    private String results;
     private String seenBy;
     private String actionBy;
     private Date dateCreated;
@@ -122,5 +125,29 @@ public class PatientMedicalTest {
 
     public void setSeenBy(String seenBy) {
         this.seenBy = seenBy;
+    }
+
+    public String getReference() {
+        return reference;
+    }
+
+    public void setReference(String reference) {
+        this.reference = reference;
+    }
+
+    public String getUnits() {
+        return units;
+    }
+
+    public void setUnits(String units) {
+        this.units = units;
+    }
+
+    public String getResults() {
+        return results;
+    }
+
+    public void setResults(String results) {
+        this.results = results;
     }
 }

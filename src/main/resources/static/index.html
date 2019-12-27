@@ -32,6 +32,9 @@
     <script src="wapp/controller/LogoutController.js"></script>
     <script src="wapp/controller/BillingController.js"></script>
     <script src="wapp/controller/MedicalTestController.js"></script>
+    <script src="wapp/controller/LabResultsController.js"></script>
+    <script src="wapp/controller/PatientTestController.js"></script>
+    <script src="wapp/controller/DailyPatientController.js"></script>
 
     <script src="wapp/app-services/authentication.service.js"></script>
     <script src="wapp/app-services/user.service.js"></script>
@@ -48,34 +51,36 @@
 
     <nav id="sidebar">
         <div class="sidebar-header">
-            <h4>Medical Data Analysis System</h4>
+            <h4><a href="#dashboard">Medical Data Analysis System</a></h4>
         </div>
 
         <ul class="list-unstyled components">
             <p>Nuclear Medicine Unit</p>
             <li class="active">
-                <a aria-expanded="false" class="dropdown-toggle" data-toggle="collapse" href="#homeSubmenu">Administration</a>
-                <ul class="collapse list-unstyled" id="homeSubmenu">
+                <a href="#!billing">Billing</a>
+            </li>
+            <li>
+                <a aria-expanded="false" class="dropdown-toggle" data-toggle="collapse" href="#homeSubmenu1">Lab</a>
+                <ul class="collapse list-unstyled" id="homeSubmenu1">
                     <li>
-                        <a href="#!useradmin">User Admin</a>
+                        <a href="#!labresults">Enter Test Results</a>
                     </li>
                     <li>
-                        <a href="#!patient">Patient</a>
+                        <a href="#!patienttest">Test by Patient</a>
                     </li>
+                 </ul>
+            </li>
+            <li>
+                <a aria-expanded="false" class="dropdown-toggle" data-toggle="collapse" href="#homeSubmenu2">Reports</a>
+                <ul class="collapse list-unstyled" id="homeSubmenu2">
                     <li>
-                        <a href="#!meditest">Test Setup</a>
+                        <a href="#!dailypatientreport">Daily Patient Report</a>
                     </li>
                 </ul>
             </li>
             <li>
-                <a href="#!billing">Billing</a>
-            </li>
-            <li>
-                <a href="#dashboard">Portfolio</a>
-            </li>
-            <li class="active">
-                <a aria-expanded="false" class="dropdown-toggle" data-toggle="collapse" href="#homeSubmenu">Reports</a>
-                <ul class="collapse list-unstyled" id="homeSubmenu1">
+                <a aria-expanded="false" class="dropdown-toggle" data-toggle="collapse" href="#homeSubmenu">Administration</a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
                     <li>
                         <a href="#!useradmin">User Admin</a>
                     </li>

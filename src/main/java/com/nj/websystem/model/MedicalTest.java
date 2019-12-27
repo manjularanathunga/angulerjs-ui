@@ -20,6 +20,8 @@ public class MedicalTest {
     private String name;
     @Column(precision = 2, scale = 0)
     private Double price;
+    private String reference;
+    private String units;
     private String actionBy;
     private Date dateCreated;
     private Date lastModified;
@@ -95,5 +97,21 @@ public class MedicalTest {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public String getReference() {
+        return reference;
+    }
+
+    public void setReference(String reference) {
+        this.reference = reference;
+    }
+
+    public String getUnits() {
+        return units;
+    }
+
+    public void setUnits(String units) {
+        this.units = units;
     }
 }

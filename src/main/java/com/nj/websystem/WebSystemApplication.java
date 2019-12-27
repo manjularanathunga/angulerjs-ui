@@ -34,16 +34,12 @@ public class WebSystemApplication {
         System.out.println("System starting ......");
         List<UserAdmin> adminUsers =new ArrayList<>();
         adminUsers.add(new UserAdmin(1L,"admin", "admin", "admin", "admin", UserRoles.ADMIN, "admin", new Date(), "system"));
-        adminUsers.add(new UserAdmin(2L,"manjula", "Manjula", "Ranathunga", "manjula@123", UserRoles.ADMIN, "admin", new Date(), "system"));
-        adminUsers.add(new UserAdmin(3L,"nuwan", "Nuwan", "Jayasooriya", "nuwan@123", UserRoles.ADMIN, "admin", new Date(), "system"));
-        adminUsers.add(new UserAdmin(4L,"test", "Test", "User", "test@123", UserRoles.USER, "admin", new Date(), "system"));
+        adminUsers.add(new UserAdmin(2L,"manjula", "Manjula", "Ranathunga", "manjula", UserRoles.ADMIN, "admin", new Date(), "system"));
+        adminUsers.add(new UserAdmin(3L,"nuwan", "Nuwan", "Jayasooriya", "nuwan", UserRoles.ADMIN, "admin", new Date(), "system"));
+        adminUsers.add(new UserAdmin(4L,"test", "Test", "User", "test", UserRoles.USER, "admin", new Date(), "system"));
         services.saveAll(adminUsers);
         return args -> {
             logger.info("Started ...");
         };
     }
-
-
-
-
 }

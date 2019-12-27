@@ -1,9 +1,12 @@
 package com.nj.websystem.controller;
 
+import com.nj.websystem.enums.Status;
 import com.nj.websystem.enums.TestType;
+import com.nj.websystem.model.Patient;
 import com.nj.websystem.model.PatientMedicalTest;
 import com.nj.websystem.rest.HttpResponse;
 import com.nj.websystem.service.PatientMedicalTestService;
+import com.nj.websystem.service.PatientService;
 import com.nj.websystem.util.DateUtility;
 import com.nj.websystem.util.StringUtility;
 import org.slf4j.Logger;
@@ -12,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -24,6 +28,9 @@ public class PetientMedicalTestController {
 
     @Autowired
     private PatientMedicalTestService services;
+
+    @Autowired
+    private PatientService patientService;
 
     @RequestMapping(value = "/getList", method = RequestMethod.GET, headers = "Accept=application/json")
     public List getList() {
@@ -158,6 +165,28 @@ public class PetientMedicalTestController {
         if (itemList != null && itemList.size() >0 ) {
             response.setResponse(itemList);
             response.setRecCount(itemList.size());
+            response.setSuccess(true);
+        } else {
+            response.setSuccess(false);
+            logger.info("Record not found  : {} " + billingNumber);
+            response.setException("Record not found  : {} " + billingNumber);
+        }
+        return response;
+    }
+
+    @RequestMapping(value = "/findAllByBillingNumber", method = RequestMethod.GET, headers = "Accept=application/json")
+    public HttpResponse findAllByBillingNumber(@RequestParam(value = "billingNumber", required = false) String billingNumber) {
+        logger.info("findAllByBillingNumber : {} " + billingNumber);
+        HttpResponse response = new HttpResponse();
+        List <PatientMedicalTest> itemList = services.findAllByBillingNumberAndStatus(billingNumber, Status.OPEN);
+        if (itemList != null && itemList.size() >0 ) {
+            if(itemList.size() > 0){
+                Patient patient = patientService.findByPatientId(itemList.get(0).getPatientId()).get(0);
+                List test = new ArrayList();
+                test.add(patient);
+                test.add(itemList);
+                response.setResponse(test);
+            }
             response.setSuccess(true);
         } else {
             response.setSuccess(false);

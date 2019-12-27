@@ -31,8 +31,10 @@
                     <th class="first-col" width="2%">&nbsp;</th>
                     <th width="7%">TEST #</th>
                     <th width="15%">#</th>
-                    <th width="45%">TEST</th>
+                    <th width="20%">TEST</th>
                     <th width="10%">Price</th>
+                    <th width="10%">reference</th>
+                    <th width="10%">units</th>
                     <th>ACTIONBY</th>
                     <th>DATECREATED</th>
                     <th>LASTMODIFIED</th>
@@ -53,6 +55,8 @@
                     <td>{{itm.testNumber}}</td>
                     <td>{{itm.name}}</td>
                     <td>{{itm.price}}</td>
+                    <td>{{itm.reference}}</td>
+                    <td>{{itm.units}}</td>
                     <td>{{itm.actionBy}}</td>
                     <td>{{itm.dateCreated | date:'medium'}}</td>
                     <td>{{itm.lastModified | date:'medium'}}</td>
@@ -135,6 +139,37 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="row pt-3">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <label class="font-size-sm">Reference</label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input forma ng-disabled="itemDisabled" ng-model="mtest.reference"
+                                           style="width: 250px;" type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row pt-3">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <label class="font-size-sm">Units</label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input forma ng-disabled="itemDisabled" ng-model="mtest.units"
+                                           style="width: 75px;" type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
                     <div class="row pt-3 pb-3">
                         <div class="col-sm-12">
                             <div class="d-flex justify-content-sm-end">

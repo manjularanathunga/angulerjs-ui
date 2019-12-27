@@ -1,5 +1,6 @@
 package com.nj.websystem.service;
 
+import com.nj.websystem.enums.Status;
 import com.nj.websystem.enums.TestType;
 import com.nj.websystem.model.PatientMedicalTest;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -27,6 +28,10 @@ public interface PatientMedicalTestService extends JpaRepository<PatientMedicalT
     List<PatientMedicalTest> findAllByPatientIdAndTestType(String patientId, TestType testType);
 
     List<PatientMedicalTest> findAllByPatientIdAndBillingNumber(String patientId, String billingNumber);
+
+    List<PatientMedicalTest> findAllByBillingNumber(String billingNumber);
+
+    List<PatientMedicalTest> findAllByBillingNumberAndStatus(String billingNumber, Status status);
 
     public List<PatientMedicalTest> getAllByTestTypeOrderByIdDesc(TestType testType);
 

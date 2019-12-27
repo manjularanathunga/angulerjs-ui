@@ -156,6 +156,7 @@ app.controller('BillingController', function($scope, $rootScope, $http, $locatio
         saveTest.seenBy = $scope.patient.seenBy;
         saveTest.id = null;
         saveTest.billingNumber = $scope.uicompo.billingNumber;
+        saveTest.status = "OPEN";
 
         $scope.billingList.push(saveTest);
 

@@ -11,7 +11,7 @@ app.controller('PatientTestController', function($scope, $rootScope, $http, $loc
     $scope.uicompo.patientId = "000001";
 
     $scope.loadByBillingNum = function() {
-    var res = $http.get("patientmedicaltest/findAllByBillingNumber?billingNumber=" + $scope.uicompo.billingNumber)
+    var res = $http.get("patientmedicaltest/findAllActiveByBillingNumber?billingNumber=" + $scope.uicompo.billingNumber)
         .then(function(response) {
             if (response.data.success) {
                 $scope.patientMediTestList = response.data.response;

@@ -196,6 +196,28 @@ public class PetientMedicalTestController {
         return response;
     }
 
+    @RequestMapping(value = "/findAllActiveByBillingNumber", method = RequestMethod.GET, headers = "Accept=application/json")
+    public HttpResponse findAllActiveByBillingNumber(@RequestParam(value = "billingNumber", required = false) String billingNumber) {
+        logger.info("findAllActiveByBillingNumber : {} " + billingNumber);
+        HttpResponse response = new HttpResponse();
+        List <PatientMedicalTest> itemList = services.findAllByBillingNumber(billingNumber);
+        if (itemList != null && itemList.size() >0 ) {
+            if(itemList.size() > 0){
+                Patient patient = patientService.findByPatientId(itemList.get(0).getPatientId()).get(0);
+                List test = new ArrayList();
+                test.add(patient);
+                test.add(itemList);
+                response.setResponse(test);
+            }
+            response.setSuccess(true);
+        } else {
+            response.setSuccess(false);
+            logger.info("Record not found  : {} " + billingNumber);
+            response.setException("Record not found  : {} " + billingNumber);
+        }
+        return response;
+    }
+
     @RequestMapping(value = "/saveList", method = RequestMethod.POST, headers = "Accept=application/json")
     public HttpResponse bulkInsert(@RequestBody List<PatientMedicalTest> items) {
         logger.info("PatientMedicalTest count : {} " + items.size());

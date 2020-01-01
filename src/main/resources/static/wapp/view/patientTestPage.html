@@ -63,23 +63,41 @@
     <div class="wrapper table table-sm table-hover table-bordered" id="parent">
         <table class="table" id="fixTable">
             <thead class="bg-secondary text-light">
+
+
+
             <tr>
-                <th width="5%">Date</th>
-                <th width="5%">#</th>
-                <th width="20%">Test Name</th>
-                <th width="20%">Reference</th>
-                <th width="5%">Units</th>
-                <th width="3%">Results</th>
+                <th>testNumber</th>
+                <th>patientId</th>
+                <th>testType</th>
+                <th>billingNumber</th>
+                <th>name</th>
+                <th>price</th>
+                <th>reference</th>
+                <th>units</th>
+                <th>results</th>
+                <th>seenBy</th>
+                <th>actionBy</th>
+                <th>dateCreated</th>
+                <th>lastModified</th>
+                <th>status</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="itm in patientMediTestList | filter : searchKeyword">
-                <td>{{itm.dateCreated | date:'shortDate'}}</td>
                 <td>{{itm.testNumber}}</td>
+                <td>{{itm.patientId}}</td>
+                <td>{{itm.testType}}</td>
+                <td>{{itm.billingNumber}}</td>
                 <td>{{itm.name}}</td>
+                <td>{{itm.price}}</td>
                 <td>{{itm.reference}}</td>
-                <td>{{itm.units}}</td>
                 <td>{{itm.results}}</td>
+                <td>{{itm.seenBy}}</td>
+                <td>{{itm.actionBy}}</td>
+                <td>{{itm.dateCreated | date:'shortDate'}}</td>
+                <td>{{itm.lastModified | date:'shortDate'}}</td>
+                <td>{{itm.status}}</td>
             </tr>
             </tbody>
         </table>
